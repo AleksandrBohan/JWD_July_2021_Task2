@@ -1,13 +1,41 @@
 package com.epam.jwd.task_2.parsers;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 public class WordsParser {
 
     private int numberOfSymbols;
 
-    String wordParser;
+    public String getPunctuationMarksParser() {
+        return punctuationMarksParser;
+    }
+
+    public void setPunctuationMarksParser(String punctuationMarksParser) {
+        this.punctuationMarksParser = punctuationMarksParser;
+    }
+
+    private String punctuationMarksParser = "[?;:.,!]";
+
+    private String wordParser = "\\w+";
 
     public WordsParser(){
-        setWordParser("^\\s+\\w\\s+$");
+
+        setWordParser(wordParser);
+        setPunctuationMarksParser(punctuationMarksParser);
+    }
+
+    public void parseIt(String text, String parser){
+        Pattern pattern = Pattern.compile(parser);
+
+        Matcher matcher = pattern.matcher(text);
+
+        while (matcher.find()){
+            System.out.println("Found: " + matcher.group(0) +
+                    " at position " + matcher.start() + " - " +
+                    matcher.end());
+
+        }
     }
 
     public int getNumberOfSymbols() {
@@ -24,5 +52,15 @@ public class WordsParser {
 
     public void setWordParser(String wordParser) {
         this.wordParser = wordParser;
+    }
+
+    public static void main(String[] args) {
+        WordsParser wordsParser = new WordsParser();
+
+        wordsParser.parseIt("as. ajsod? {jsdni djsoj djoj didi d, :suu di",
+                wordsParser.getWordParser());
+
+        wordsParser.parseIt("as. ajsod? jsdni djsoj djoj didi d, :suu di",
+                wordsParser.getPunctuationMarksParser());
     }
 }
