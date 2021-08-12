@@ -1,28 +1,17 @@
 package com.epam.jwd.task_2.parsers;
 
+import java.lang.reflect.Method;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class WordsParser {
 
-    private int numberOfSymbols;
-
-    public String getPunctuationMarksParser() {
-        return punctuationMarksParser;
-    }
-
-    public void setPunctuationMarksParser(String punctuationMarksParser) {
-        this.punctuationMarksParser = punctuationMarksParser;
-    }
-
-    private String punctuationMarksParser = "[?;:.,!]";
-
-    private String wordParser = "\\w+";
+    private String wordParser = "(\\w+)|[?;:.,!\"]";
 
     public WordsParser(){
 
         setWordParser(wordParser);
-        setPunctuationMarksParser(punctuationMarksParser);
+
     }
 
     public void parseIt(String text, String parser){
@@ -38,14 +27,6 @@ public class WordsParser {
         }
     }
 
-    public int getNumberOfSymbols() {
-        return numberOfSymbols;
-    }
-
-    public void setNumberOfSymbols(int numberOfSymbols) {
-        this.numberOfSymbols = numberOfSymbols;
-    }
-
     public String getWordParser() {
         return wordParser;
     }
@@ -59,8 +40,5 @@ public class WordsParser {
 
         wordsParser.parseIt("as. ajsod? {jsdni djsoj djoj didi d, :suu di",
                 wordsParser.getWordParser());
-
-        wordsParser.parseIt("as. ajsod? jsdni djsoj djoj didi d, :suu di",
-                wordsParser.getPunctuationMarksParser());
     }
 }
