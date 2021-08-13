@@ -5,14 +5,7 @@ import java.util.regex.Pattern;
 
 public class SentencesParser {
 
-    private String sentenceParce = "^\\s*|[A-Z].+[!?.]$";
-
-
-    public SentencesParser() {
-
-        setSentenceParce(sentenceParce);
-
-    }
+    private final static String sentenceParce = "\\s[A-Z].+[!?.]";
 
     public void parseIt(String text, String parser) {
         Pattern pattern = Pattern.compile(parser);
@@ -23,18 +16,12 @@ public class SentencesParser {
             System.out.println("Found: " + matcher.group(0) +
                     " at position " + matcher.start() + " - " +
                     matcher.end());
-
         }
-
 
     }
 
     public String getSentenceParce() {
         return sentenceParce;
-    }
-
-    public void setSentenceParce(String sentenceParce) {
-        this.sentenceParce = sentenceParce;
     }
 
     public static void main(String[] args) {
