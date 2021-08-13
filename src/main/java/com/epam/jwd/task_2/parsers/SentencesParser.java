@@ -5,7 +5,7 @@ import java.util.regex.Pattern;
 
 public class SentencesParser {
 
-    private final static String sentenceParce = "\\s[A-Z].+[!?.]";
+    private final static String sentenceParce = "([^(\\\\.|!|\\\\?)]+)(\\.|!|\\?)";
 
     public void parseIt(String text, String parser) {
         Pattern pattern = Pattern.compile(parser);

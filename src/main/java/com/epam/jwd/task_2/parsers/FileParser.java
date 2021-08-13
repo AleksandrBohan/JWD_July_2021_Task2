@@ -1,4 +1,4 @@
-package com.epam.jwd.task_2.file;
+package com.epam.jwd.task_2.parsers;
 
 import com.epam.jwd.task_2.exceptions.WrongFileName;
 
@@ -8,16 +8,16 @@ public class FileParser {
 
     private static final String FILE_PARSER = "\\w:(\\.+)\\.[t][x][t]";
 
-    void checkFilePath(String filePath) throws WrongFileName{
+    public void checkFilePath(String filePath) throws WrongFileName {
         Scanner scanner = new Scanner(System.in);
 
         System.out.println("Input file path: ");
 
         String path = scanner.next();
 
-        if (path.equals(filePath) == false){
+        if (path.equals(filePath) == false | filePath == null) {
             throw new WrongFileName("Incorrect file name", filePath);
-
         }
+
     }
 }
