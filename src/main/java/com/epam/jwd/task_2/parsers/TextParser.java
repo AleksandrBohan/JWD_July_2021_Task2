@@ -2,6 +2,8 @@ package com.epam.jwd.task_2.parsers;
 
 import com.epam.jwd.task_2.exceptions.WrongFileName;
 
+import java.io.IOException;
+import java.util.Objects;
 import java.util.Scanner;
 
 public class TextParser {
@@ -10,28 +12,19 @@ public class TextParser {
 
     private SentencesParser sentencesParser;
 
-    void choiseParsMethod() throws WrongFileName {
-        Scanner scanner = new Scanner(System.in);
-
-        System.out.println("Choise parse method: ");
-        System.out.println("1 - parse by words");
-        System.out.println("2 - parse by sentenses");
-
-        int yourOption = scanner.nextInt();
-
-        if (yourOption == 1){
-            wordsParser.parseIt("ProgramText.txt", wordsParser.getWordParser(),
-                    "ProgramText.txt");
+    void choiseParsMethod(Object o, String path) throws WrongFileName, IOException {
+        if (o == new WordsParser()){
+            wordsParser.parseIt(path);
         }
 
-        if (yourOption == 2){
-            sentencesParser.parseIt("dsfasd dsfadf dsf sdf a. . . . ", wordsParser.getWordParser());
+        if (o == new SentencesParser()){
+          //  sentencesParser.parseIt(wordsParser.parseIt(path));
         }
     }
 
-    public static void main(String[] args) throws WrongFileName {
+    public static void main(String[] args) throws WrongFileName, IOException {
         TextParser textParser = new TextParser();
-        textParser.choiseParsMethod();
+        textParser.choiseParsMethod(new WordsParser(), "C:\\TsTemp\\ProgramText.txt");
     }
 
 }

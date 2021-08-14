@@ -9,31 +9,19 @@ import java.util.regex.Pattern;
 
 public class FileParser {
 
-    //TODO DELETE IT! private static final String FILE_PARSER = "^\\w:\\\\.+\\.[t][x][t]";
     private static final String PATH_PARSER = "^\\w:\\\\.+\\.[t][x][t]";
 
-    public void checkFilePath() throws WrongFileName {
-        Scanner scanner = new Scanner(System.in);
-
-        System.out.println("Input file path: ");
-
-        String path = scanner.next();
-
+    public void checkFilePath(String filePath) throws WrongFileName {
         Pattern pattern = Pattern.compile(PATH_PARSER);
-
-        Matcher matcher = pattern.matcher(path);
-       if (matcher.find()) {
-            System.out.println(matcher.group(0));
-
+        Matcher matcher = pattern.matcher(filePath);
+        if(matcher.find()) {
+            System.out.println("This is really true path");
+        } else {
+            throw new WrongFileName("Wrong path to file", filePath);
         }
-
     }
     public static String getFileParser() {
         return PATH_PARSER;
     }
 
-    public static void main(String[] args) throws WrongFileName {
-        FileParser fileParser = new FileParser();
-        fileParser.checkFilePath();
-    }
 }
