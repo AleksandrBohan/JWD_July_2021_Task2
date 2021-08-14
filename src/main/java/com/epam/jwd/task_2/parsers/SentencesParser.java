@@ -9,12 +9,12 @@ public class SentencesParser {
 
     private final static String sentenceParce = "([^(\\\\.|!|\\\\?)]+)(\\.|!|\\?)";
 
-    public void parseIt(String text, String parser, String path) throws WrongFileName {
+    public void parseIt(String text, String parser) throws WrongFileName {
         Pattern pattern = Pattern.compile(parser);
 
         Matcher matcher = pattern.matcher(text);
 
-        new FileParser().checkFilePath(path);
+        new FileParser().checkFilePath();
 
         while (matcher.find()) {
             System.out.println("Found: " + matcher.group(0) +
