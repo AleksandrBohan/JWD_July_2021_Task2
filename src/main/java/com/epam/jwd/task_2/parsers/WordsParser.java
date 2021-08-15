@@ -16,20 +16,25 @@
 
 
 
-    public class WordsParser {
+    public class WordsParser extends ChainOfResponsibilityParser {
 
         private static final String WORD_PARSER = "(\\w+)|[?;:.,!\"]";
 
-        private List<String> list = new ArrayList();
-
-        static String readFile(String path, Charset encoding)
-                throws IOException
-        {
-            byte[] encoded = Files.readAllBytes(Paths.get(path));
-            return new String(encoded, encoding);
+        public static String getWordParser() {
+            return WORD_PARSER;
         }
 
-        public void parseIt(String path) throws WrongFileName, IOException {
+        @Override
+        public String readFile(String path, Charset encoding) throws IOException {
+            return super.readFile(path, encoding);
+        }
+
+        @Override
+        public void parseIt(String path, String parser) throws WrongFileName, IOException {
+            super.parseIt(path, WORD_PARSER);
+        }
+
+      /* public void parseIt(String path) throws WrongFileName, IOException {
             Pattern pattern = Pattern.compile(WORD_PARSER);
 
             Matcher matcher = pattern.matcher(readFile(path, StandardCharsets.UTF_8));
@@ -49,11 +54,9 @@
             } catch (IOException ex) {
                 System.err.println("Trouble with writing!");
             }
-        }
 
-        public static void main(String[] args) throws IOException, WrongFileName {
-            new WordsParser().parseIt("C:\\TsTemp\\ProgramText.txt");
-        }
+        }*/ //TODO
+
 
     }
 
