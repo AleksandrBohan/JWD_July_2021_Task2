@@ -12,11 +12,9 @@ public class TextReader {
 
     private String pathToFile;
 
-    private List<Character> list = new ArrayList<>();
+    public void readFile(List<Character> list, String path){
 
-    public void readFile(List<Character> list){
-        this.list = list;
-        try(FileInputStream fin=new FileInputStream("C:\\TsTemp\\ProgramText.txt"))
+        try(FileInputStream fin=new FileInputStream(path))
         {
             System.out.printf("File size: %d bytes \n", fin.available());
 
@@ -27,7 +25,7 @@ public class TextReader {
             }
 
         } catch(IOException ex){
-            System.out.println(ex.getMessage());
+            System.out.println("This method called IOException!");
         }
     }
 
@@ -37,14 +35,6 @@ public class TextReader {
 
     public void setPathToFile(String pathToFile) {
         this.pathToFile = pathToFile;
-    }
-
-    public List<Character> getList() {
-        return list;
-    }
-
-    public void setList(List<Character> list) {
-        this.list = list;
     }
 }
 

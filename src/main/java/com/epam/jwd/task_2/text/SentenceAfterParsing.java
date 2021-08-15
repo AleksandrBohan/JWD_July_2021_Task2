@@ -9,7 +9,7 @@ public class SentenceAfterParsing {
 
     private String pathToFile;
 
-    public SentenceAfterParsing() throws IOException, WrongFileName {
+    public SentenceAfterParsing(String pathToFile) throws IOException, WrongFileName {
         setPathToFile(pathToFile);
         new WordsParser().parseIt(pathToFile, WordsParser.getWordParser());
     }
