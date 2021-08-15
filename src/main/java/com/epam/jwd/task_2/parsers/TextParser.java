@@ -8,23 +8,20 @@ import java.util.Scanner;
 
 public class TextParser {
 
-    private WordsParser wordsParser;
-
-    private SentencesParser sentencesParser;
-
-    void choiseParsMethod(Object o, String path) throws WrongFileName, IOException {
-        if (o == new WordsParser()){
-            wordsParser.parseIt(path);
+    void choiseParsMethod(Object objectForParsing, String path) throws WrongFileName, IOException {
+        if (objectForParsing == WordsParser.class){
+            new WordsParser().parseIt(path);
         }
 
-        if (o == new SentencesParser()){
-          //  sentencesParser.parseIt(wordsParser.parseIt(path));
+        if (objectForParsing == SentencesParser.class){
+           new SentencesParser().parseIt(path);
         }
     }
 
     public static void main(String[] args) throws WrongFileName, IOException {
         TextParser textParser = new TextParser();
-        textParser.choiseParsMethod(new WordsParser(), "C:\\TsTemp\\ProgramText.txt");
+        textParser.choiseParsMethod(SentencesParser.class, "C:\\TsTemp\\ProgramText.txt");
+
     }
 
 }

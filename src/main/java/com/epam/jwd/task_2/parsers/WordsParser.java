@@ -49,17 +49,11 @@
             } catch (IOException ex) {
                 System.err.println("Trouble with writing!");
             }
-
-
         }
 
         public static void main(String[] args) throws IOException, WrongFileName {
             new WordsParser().parseIt("C:\\TsTemp\\ProgramText.txt");
         }
 
-    /*void output(){
-        for (String s : list){
-            System.out.println(s);
-        }*///TODO
     }
 
