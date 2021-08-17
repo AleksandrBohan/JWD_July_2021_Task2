@@ -41,7 +41,7 @@ public class ParserApp {
     public static void main(String[] args) throws WrongFileName, IOException, WrongAnswerException {
         List<Character> list = new ArrayList<>();
         ParserApp parserApp = new ParserApp();
-       // parserApp.getPathParser();
+    //TODO USE when will finish! parserApp.getPathParser();
         new TextAfterParsing("C:\\TsTemp\\ProgramText.txt");
         new SentenceAfterParsing("C:\\TsTemp\\ProgramText.txt");
         parserApp.getTextAfterParse(SentencesParser.class, "C:\\TsTemp\\FirstText.txt");
