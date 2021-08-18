@@ -1,11 +1,10 @@
 package com.epam.jwd.task_2.app;
 
+import com.epam.jwd.task_2.composite.SentenceParsing;
+import com.epam.jwd.task_2.composite.TextParsing;
 import com.epam.jwd.task_2.exceptions.WrongAnswerException;
 import com.epam.jwd.task_2.exceptions.WrongFileName;
-import com.epam.jwd.task_2.parsers.FileParser;
-import com.epam.jwd.task_2.parsers.SentencesParser;
-import com.epam.jwd.task_2.parsers.TextParser;
-import com.epam.jwd.task_2.parsers.WordsParser;
+import com.epam.jwd.task_2.parsers.*;
 import com.epam.jwd.task_2.reader.TextReader;
 import com.epam.jwd.task_2.text.OriginalText;
 import com.epam.jwd.task_2.text.SentenceAfterParsing;
@@ -39,12 +38,17 @@ public class ParserApp {
 
 
     public static void main(String[] args) throws WrongFileName, IOException, WrongAnswerException {
-        List<Character> list = new ArrayList<>();
-        ParserApp parserApp = new ParserApp();
+       /* List<Character> list = new ArrayList<>();
+        ParserApp parserApp = new ParserApp();*/
     //TODO USE when will finish! parserApp.getPathParser();
-        new TextAfterParsing("C:\\TsTemp\\ProgramText.txt");
+       /* new TextAfterParsing("C:\\TsTemp\\ProgramText.txt");
         new SentenceAfterParsing("C:\\TsTemp\\ProgramText.txt");
         parserApp.getTextAfterParse(SentencesParser.class, "C:\\TsTemp\\FirstText.txt");
-        new OriginalText().rollBackChanges(list,"C:\\TsTemp\\ProgramText.txt");
+        new OriginalText().rollBackChanges(list,"C:\\TsTemp\\ProgramText.txt");  */
+        new TextParsing().addText("ProgramFile.txt", SentencesParser.getSentenceParser());
+       // new SentenceParsing().addText("ProgramFile.txt", WordsParser.getReversedParser());
+        //new SentenceParsing().removeParser("ProgramFile.txt", WordsParser.getReversedParser());
+        new TextParsing().removeParser("ProgramFile.txt", SentencesParser.getReverseParser());
+
     }
 }

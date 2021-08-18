@@ -1,0 +1,24 @@
+13.7The Java programming language was developed by Sun Microsystems in the early 1990s. Java was originally designed for embedded network applications running on multiple platforms.
+Java is extremely portable.
+ Besides portability, another of Java's key advantages is its set of security features which protect a PC running a Java program not only from problems caused by erroneous code but also from malicious programs (such as viruses).
+ An applet is typically a small Java program that is embedded within an HTML
+Java can be considered both a compiled and an interpreted language because its source code is first compiled into a binary byte-code.
+ The use of compiled byte-code allows the interpreter (the virtual machine) to be small and efficient (and nearly as fast as the CPU running native, compiled code).
+ Most Web browsers (such as Microsoft Internet Explorer or Netscape Communicator) contain a JVM to run Java
+Compared to C++ (another object-oriented language), Java code runs a little slower (because of the JVM) but it is more portable and has much better security features.
+ Java's syntax is similar to C++ but the languages are quite different.
+ In addition, Java is a dynamic language where you can safely modify a program while it is running, whereas C++ does not allow it.
+ Also, all basic Java data types are predefined and not platform-dependent, whereas some data types can change with the platform used in C or C++ (such as the int
+Java programs are more highly structured than C++ equivalents.
+ Global data and methods cannot reside outside of a class in Java, whereas C++ allows this.
+Another key feature of Java is that it is an open standard with publicly available source code.
+ You can freely download all the tools you need to develop and run Java applets and applications from Sun's Java Web site (http://java.
+In this example, the class AverageProgram (which is the program) contains only one method (function), main().
+ Even the while() statement works as it would in C/C++.
+out.
+out object.
+in object, for reading from the keyboard, but it must be processed to be useful.
+in), which contains the method Readlnt() for reading an integer
+As with the other programming languages we have surveyed, this was just a brief view of Java.
+sun.
+ Next we will discuss writing programs that run under a Microsoft Windows operating

@@ -20,6 +20,14 @@
 
         private static final String WORD_PARSER = "(\\w+)|[?;:.,!\"]";
 
+        private static final String REVERSED_PARSER = "\\s*(\\w+)|[?;:.,!\"](\\n*)";
+
+
+
+        public static String getReversedParser() {
+            return REVERSED_PARSER;
+        }
+
         public static String getWordParser() {
             return WORD_PARSER;
         }
@@ -31,10 +39,15 @@
 
         @Override
         public void parseIt(String path, String parser) throws WrongFileName, IOException {
-            super.parseIt(path, WORD_PARSER);
+            super.parseIt(path, REVERSED_PARSER);
         }
 
-      /* public void parseIt(String path) throws WrongFileName, IOException {
+        @Override
+        public void recoverText(String path, String parser) throws IOException {
+            super.recoverText(path, REVERSED_PARSER);
+        }
+
+        /* public void parseIt(String path) throws WrongFileName, IOException {
             Pattern pattern = Pattern.compile(WORD_PARSER);
 
             Matcher matcher = pattern.matcher(readFile(path, StandardCharsets.UTF_8));

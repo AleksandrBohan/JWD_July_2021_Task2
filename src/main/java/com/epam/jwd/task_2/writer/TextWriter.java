@@ -13,7 +13,7 @@ public class TextWriter {
 
    public void writeFile(List<Character> list, String path) {
 
-       File cloneFile = new File("C:\\TsTemp\\CloneParser.txt");
+       File cloneFile = new File("ProgramFile.txt");
 
         try(FileOutputStream fos=new FileOutputStream(path)) {
 

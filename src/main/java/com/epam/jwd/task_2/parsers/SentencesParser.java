@@ -14,6 +14,12 @@ import java.util.regex.Pattern;
 public class SentencesParser extends ChainOfResponsibilityParser{
 
     private static final String SENTENCE_PARSER = "\\s*([^!.?]+?([!.?]))";
+    private static final String REVERSE_PARSER = "(\\n*)(.+)\\s(.+)[!.?]";    //
+
+    public static String getReverseParser() {        //(\n*)(.+\s.+[!.?])
+        return REVERSE_PARSER;
+    }
+
 
     public static String getSentenceParser() {
         return SENTENCE_PARSER;
@@ -27,6 +33,11 @@ public class SentencesParser extends ChainOfResponsibilityParser{
     @Override
     public void parseIt(String path, String parser) throws WrongFileName, IOException {
         super.parseIt(path, SENTENCE_PARSER);
+    }
+
+    @Override
+    public void recoverText(String path, String parser) throws IOException {
+        super.recoverText(path, REVERSE_PARSER);
     }
 
     /*public String parseIt(String path, String parser) throws WrongFileName, IOException {
