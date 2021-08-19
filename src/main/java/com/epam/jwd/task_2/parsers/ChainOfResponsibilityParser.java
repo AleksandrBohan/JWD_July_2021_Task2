@@ -17,7 +17,7 @@ import java.util.regex.Pattern;
 
 public abstract class ChainOfResponsibilityParser {
 
-    private List<String> list = new ArrayList<>();
+    private List <String> list = new ArrayList<>();
 
     public String readFile(String path, Charset encoding)
             throws IOException {
@@ -25,21 +25,27 @@ public abstract class ChainOfResponsibilityParser {
         return new String(encoded, encoding);
     }
 
-    public void parseIt(String path, String parser) throws WrongFileName, IOException {
-        Pattern pattern = Pattern.compile(parser);
+    public void parseIt(String path, String generalParser, List list) throws WrongFileName, IOException {
+        this.list = list;
 
-        Matcher matcher = pattern.matcher(readFile(path, StandardCharsets.UTF_8));
+        Pattern generalPattern = Pattern.compile(generalParser);
+
+       // Pattern additionalPattern = Pattern.compile(additionalParser);
+
+        Matcher generalMatcher = generalPattern.matcher(readFile(path, StandardCharsets.UTF_8));
+
+
 
         File writingFile = new File("ProgramFile.txt");
 
         try (FileWriter writer = new FileWriter("ProgramFile.txt",
                 false)) {
 
-            while (matcher.find()) {
-                writer.write(matcher.group(0));
+            while (generalMatcher.find()) {
+                writer.write(generalMatcher.group(0));
                 writer.append("\n");
-                list.add(matcher.group(0));
-                System.out.println("Found: " + matcher.group(0));
+                list.add(generalMatcher.group(0));
+                System.out.println("Found: " + generalMatcher.group(0));
             }
 
         } catch (IOException ex) {
@@ -48,8 +54,11 @@ public abstract class ChainOfResponsibilityParser {
 
     }
 
-    public void recoverText(String path, String parser) throws IOException {
+    public void recoverText(String path, String parser, List <String>list) throws IOException {
         int counter = 0;
+
+        this.list = list;
+
         Pattern pattern = Pattern.compile(parser);
 
         Matcher matcher = pattern.matcher(readFile(path, StandardCharsets.UTF_8));
@@ -57,14 +66,19 @@ public abstract class ChainOfResponsibilityParser {
         try (FileWriter writer = new FileWriter("ProgramFile.txt",
                 false)) {
 
-            while (matcher.find()) {
+            for (String s : list) {
+                writer.write(s);
+                System.out.println(s);
+            }
+
+          /*  while (matcher.find()) {
                 if (counter > 3){
                     writer.append("\n");
                 }
                 writer.append(matcher.group(2));
                 System.out.print(matcher.group(2));
                 counter++;
-            }
+            }*/
 
         } catch (IOException ex) {
             System.err.println("Trouble with writing!");

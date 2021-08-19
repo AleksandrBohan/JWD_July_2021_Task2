@@ -9,12 +9,13 @@ import java.util.List;
 public class TextParsing implements Parsing {
 
     @Override
-    public void addText(String path, String parser) throws IOException, WrongFileName {
-        new SentencesParser().parseIt(path, parser);
+    public void addParser(String path, String parser, List list) throws IOException, WrongFileName {
+        new SentencesParser().parseIt(path, parser, list);
     }
 
     @Override
-    public void removeParser(String path, String parser) throws IOException {
-        new SentencesParser().recoverText(path,parser);
+    public void removeParser(String path, String parser, List list) throws IOException {
+        new SentencesParser().recoverText(path,parser, list);
     }
+
 }

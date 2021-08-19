@@ -11,7 +11,7 @@ public class SentenceAfterParsing {
 
     public SentenceAfterParsing(String pathToFile) throws IOException, WrongFileName {
         setPathToFile(pathToFile);
-        new WordsParser().parseIt(pathToFile, WordsParser.getWordParser());
+     //TODO   new WordsParser().parseIt(pathToFile, WordsParser.getWordParser());
     }
 
     public String getPathToFile() {

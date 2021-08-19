@@ -10,11 +10,11 @@ public class TextParser {
 
     public void choiseParsMethod(Object objectForParsing, String path) throws WrongFileName, IOException {
         if (objectForParsing == WordsParser.class){
-            new WordsParser().parseIt(path, WordsParser.getWordParser());
+          //  new WordsParser().parseIt(path, WordsParser.getWordParser());
         }
 
         if (objectForParsing == SentencesParser.class){
-           new SentencesParser().parseIt(path, SentencesParser.getSentenceParser());
+         //TODO new SentencesParser().parseIt(path, SentencesParser.getSentenceParser());
         }
     }
 

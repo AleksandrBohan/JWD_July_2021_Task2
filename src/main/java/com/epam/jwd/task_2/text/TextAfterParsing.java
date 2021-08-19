@@ -12,7 +12,7 @@ public class TextAfterParsing {
     public TextAfterParsing(String pathToFile) throws IOException, WrongFileName {
 
         setPathToFile(pathToFile);
-        new SentencesParser().parseIt(pathToFile, SentencesParser.getSentenceParser());
+     //TODO   new SentencesParser().parseIt(pathToFile, SentencesParser.getSentenceParser());
 
     }
 
