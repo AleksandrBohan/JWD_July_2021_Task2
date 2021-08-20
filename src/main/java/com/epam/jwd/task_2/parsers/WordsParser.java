@@ -38,13 +38,13 @@
         }
 
         @Override
-        public void parseIt(String path, String parser, List list) throws WrongFileName, IOException {
-            super.parseIt(path, REVERSED_PARSER, list);
+        public void parseIt(String path, String parser, int groupOfParser) throws WrongFileName, IOException {
+            super.parseIt(path, WORD_PARSER, 0);
         }
 
         @Override
-        public void recoverText(String path, String parser, List list) throws IOException {
-            super.recoverText(path, REVERSED_PARSER, list);
+        public void recoverText(String path, String parser, int groupOfParser) throws IOException {
+            super.recoverText(path, WORD_PARSER, 0);
         }
 
         /* public void parseIt(String path) throws WrongFileName, IOException {

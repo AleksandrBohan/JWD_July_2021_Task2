@@ -39,19 +39,28 @@ public class ParserApp {
 
 
     public static void main(String[] args) throws WrongFileName, IOException, WrongAnswerException {
-       final List<String> list = new ArrayList<>();
-       Parsing parsing = new SentenceParsing();
+
+        Parsing textParsingFirst = new TextParsing(true);
+        SentenceParsing sentenceParsingFirst = new SentenceParsing(true);
+
+        SentenceParsing sentenceParsingSecond = new SentenceParsing(false);
+        Parsing textParsingSecond = new TextParsing(false);
+
+
+
+
+
        // ParserApp parserApp = new ParserApp();
     //TODO USE when will finish! parserApp.getPathParser();
        /* new TextAfterParsing("C:\\TsTemp\\ProgramText.txt");
         new SentenceAfterParsing("C:\\TsTemp\\ProgramText.txt");
         parserApp.getTextAfterParse(SentencesParser.class, "C:\\TsTemp\\FirstText.txt");
         new OriginalText().rollBackChanges(list,"C:\\TsTemp\\ProgramText.txt");  */
-        new SentenceParsing(parsing.addParser("ProgramFile.txt", SentencesParser.getSentenceParser(), list));
-        //new TextParsing().addText("ProgramFile.txt", SentencesParser.getSentenceParser(), list);
+
+      //  new TextParsing().addParser("ProgramFile.txt", SentencesParser.getSentenceParser(), list);
        // new SentenceParsing().addText("ProgramFile.txt", WordsParser.getReversedParser());
         //new SentenceParsing().removeParser("ProgramFile.txt", WordsParser.getReversedParser());
-        new TextParsing().removeParser("ProgramFile.txt", SentencesParser.getReverseParser(), list);
+       //new TextParsing().removeParser("ProgramFile.txt", SentencesParser.getSentenceParser(), list);
 
     }
 }

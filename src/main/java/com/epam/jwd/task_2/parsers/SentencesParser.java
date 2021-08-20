@@ -15,11 +15,11 @@ import java.util.regex.Pattern;
 public class SentencesParser extends ChainOfResponsibilityParser{
 
     private static final String SENTENCE_PARSER = "\\n*\\s*([^!.?]+?([!.?]))\\n*";  //\n*\s*([^!.?]+?([!.?]))\n* TODO new
-    private static final String REVERSE_PARSER = "(\\n*)(.+)\\s(.+)[!.?]";    //
+    //private static final String REVERSE_PARSER = "(\\n*)(.+)\\s(.+)[!.?]";    //
 
-    public static String getReverseParser() {        //(\n*)(.+\s.+[!.?])
-        return REVERSE_PARSER;
-    }
+    /*public static String getReverseParser() {        //(\n*)(.+\s.+[!.?])
+        returREVERSE_PARn SER;
+    }*/
 
 
     public static String getSentenceParser() {
@@ -32,14 +32,14 @@ public class SentencesParser extends ChainOfResponsibilityParser{
     }
 
     @Override
-    public void parseIt(String path, String generalParser, List list) throws WrongFileName, IOException {
-        super.parseIt(path, SENTENCE_PARSER, list);
+    public void parseIt(String path, String generalParser, int groupOfParser) throws WrongFileName, IOException {
+        super.parseIt(path, SENTENCE_PARSER, 0);
     }
 
 
     @Override
-    public void recoverText(String path, String parser, List list) throws IOException {
-        super.recoverText(path, REVERSE_PARSER, list);
+    public void recoverText(String path, String parser, int groupOfParser) throws IOException {
+        super.recoverText(path, SENTENCE_PARSER, 1);
     }
 
     /*public String parseIt(String path, String parser) throws WrongFileName, IOException {

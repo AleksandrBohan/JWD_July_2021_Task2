@@ -9,8 +9,8 @@ import java.util.List;
 
 public interface Parsing {
 
-    void addParser(String path, String parser, List list) throws IOException, WrongFileName;
-    void removeParser(String path, String parser, List list) throws IOException;
+    void addParser(String path, String parser) throws IOException, WrongFileName;
+    void removeParser(String path, String parser) throws IOException;
 
     }
     

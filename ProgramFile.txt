@@ -1,67 +1,29 @@
-13.
-1.
-7 Java
-The Java programming language was developed by Sun Microsystems in the early 1990s.
- Although it is primarily used for Internet-based applications, Java is a simple, efficient, general-purpose language.
- Java was originally designed for embedded network applications running on multiple platforms.
- It is a portable, object-oriented, interpreted language.
-
-
-Java is extremely portable.
- The same Java application will run identically on any computer, regardless of hardware features or operating system, as long as it has a Java interpreter.
- Besides portability, another of Java's key advantages is its set of security features which protect a PC running a Java program not only from problems caused by erroneous code but also from malicious programs (such as viruses).
- You can safely run a Java applet downloaded from the Internet, because Java's security features prevent these types of applets from accessing a PC's hard drive or network connections.
- An applet is typically a small Java program that is embedded within an HTML page.
-
-
-Java can be considered both a compiled and an interpreted language because its source code is first compiled into a binary byte-code.
- This byte-code runs on the Java Virtual Machine (JVM), which is usually a software-based interpreter.
- The use of compiled byte-code allows the interpreter (the virtual machine) to be small and efficient (and nearly as fast as the CPU running native, compiled code).
- In addition, this byte-code gives Java its portability: it will run on any JVM that is correctly implemented, regardless of computer hardware or software configuration.
- Most Web browsers (such as Microsoft Internet Explorer or Netscape Communicator) contain a JVM to run Java applets.
-
-
-Compared to C++ (another object-oriented language), Java code runs a little slower (because of the JVM) but it is more portable and has much better security features.
- The virtual machine provides isolation between an untrusted Java program and the PC running the software.
- Java's syntax is similar to C++ but the languages are quite different.
- For example, Java does not permit programmers to implement operator overloading while C++ does.
- In addition, Java is a dynamic language where you can safely modify a program while it is running, whereas C++ does not allow it.
- This is especially important for network applications that cannot afford any downtime.
- Also, all basic Java data types are predefined and not platform-dependent, whereas some data types can change with the platform used in C or C++ (such as the int type).
-
-
-Java programs are more highly structured than C++ equivalents.
- All functions (or Java methods) and executable statements in Java must reside within a class while C++ allows function definitions and lines of code to exist outside of classes (as in C-style programs).
- Global data and methods cannot reside outside of a class in Java, whereas C++ allows this.
- These restrictions, though cumbersome at times, help maintain the integrity and security of Java programs and forces them to be totally object-oriented.
-
-
-Another key feature of Java is that it is an open standard with publicly available source code.
- Sun Microsystems controls the Java language and its related products but Sun's liberal license policy contributed to the Internet community embracing Java as a standard.
- You can freely download all the tools you need to develop and run Java applets and applications from Sun's Java Web site (http://java.
-sun.
-com).
-
-
-Here is a simple Java program that averages numbers entered from the keyboard:
-
-
-Sign in to download full-size image
-In this example, the class AverageProgram (which is the program) contains only one method (function), main().
- Notice that much of the syntax is the same as C or C++, including comment delimiters: you can use either C (/* */) or C++ (//) style delimiters in Java.
- Even the while() statement works as it would in C/C++.
- Output to the screen is accomplished using System.
-out.
-println(), where println() is an invoked method of the standard Java System.
-out object.
- Java also has a System.
-in object, for reading from the keyboard, but it must be processed to be useful.
- In this example, ConsoleIn is assumed to be a previously defined class (that uses System.
-in), which contains the method Readlnt() for reading an integer value.
-
-
-As with the other programming languages we have surveyed, this was just a brief view of Java.
- For more details, refer to one of the Java texts in the bibliography or visit Sun Microsystems’ Java Web site (http://java.
-sun.
-com).
- Next we will discuss writing programs that run under a Microsoft Windows operating system.
+For an applet this simple, this is all you need to do. Here’s what the applet looks like so far:
+public class HelloAgainApplet extends java.applet.Applet {
+ Font f = new Font(“TimesRoman”,Font.BOLD,36);
+ public void paint(Graphics g) {
+ g.setFont(f);
+ g.setColor(Color.red);
+ g.drawString(“Hello again!”, 5, 50);
+ }
+}
+If you’ve been paying attention, you’ll notice something is wrong with this example up to this
+point. If you don’t know what it is, try saving this file (remember, save it to the same name as
+the class: HelloAgainApplet.java) and compiling it using the Java compiler. You should get a
+bunch of errors similar to this one:
+HelloAgainApplet.java:7: Class Graphics not found in type declaration.
+Why are you getting these errors? Because the classes you’re referring to are part of a package.
+Remember that the only package you have access to automatically is java.lang. You referred to
+the Applet class in the first line of the class definition by referring to its full package name
+(java.applet.Applet). Further on in the program, however, you referred to all kinds of other
+classes as if they were already available.
+There are two ways to solve this problem: refer to all external classes by full package name or
+import the appropriate class or package at the beginning of your class file. Which one you choose
+to do is mostly a matter of choice, although if you find yourself referring to a class in another
+package lots of times, you may want to import it to cut down on the amount of typing.
+In this example, you’ll import the classes you need. There are three of them: Graphics, Font, and
+Color. All three are part of the java.awt package. Here are the lines to import these classes. These
+lines go at the top of your program, before the actual class definition:
+import java.awt.Graphics;
+import java.awt.Font;
+import java.awt.Color;
