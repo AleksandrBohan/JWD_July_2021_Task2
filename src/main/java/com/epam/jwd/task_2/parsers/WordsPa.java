@@ -16,15 +16,10 @@
 
 
 
-    public class WordsParser extends Parser {
-
-        private static final String WORD_PARSER = "(\\w+)|[?;:.,!\"]";
-
-        private static final String REVERSED_PARSER = "\\s*(\\w+)|[?;:.,!\"](\\n*)";
+    public class WordsPa extends Parser {
 
 
-
-        public static String getReversedParser() {
+        /*public static String getReversedParser() {
             return REVERSED_PARSER;
         }
 
@@ -45,31 +40,6 @@
         @Override
         public void recoverText(String path, String parser, int groupOfParser) throws IOException {
             super.recoverText(path, WORD_PARSER, 0);
-        }
-
-        /* public void parseIt(String path) throws WrongFileName, IOException {
-            Pattern pattern = Pattern.compile(WORD_PARSER);
-
-            Matcher matcher = pattern.matcher(readFile(path, StandardCharsets.UTF_8));
-
-            try (FileWriter writer = new FileWriter("C:\\TsTemp\\FirstText.txt",
-                    false)) {
-
-                while (matcher.find()) {
-                    writer.append(matcher.group(0));
-                    writer.append("\n");
-                    System.out.println("Found: " + matcher.group(0) +
-                            " at position " + matcher.start() + " - " +
-                            matcher.end());
-
-                }
-
-            } catch (IOException ex) {
-                System.err.println("Trouble with writing!");
-            }
-
-        }*/ //TODO
-
+        }*/
 
     }
-

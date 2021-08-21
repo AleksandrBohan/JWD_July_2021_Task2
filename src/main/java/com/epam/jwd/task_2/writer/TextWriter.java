@@ -2,30 +2,39 @@ package com.epam.jwd.task_2.writer;
 
 import com.epam.jwd.task_2.reader.TextReader;
 
+
 import java.io.File;
-import java.io.FileOutputStream;
+import java.io.FileWriter;
 import java.io.IOException;
-import java.util.List;
+import java.nio.charset.StandardCharsets;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class TextWriter {
 
     private String pathToFile;
 
-   public void writeFile(List<Character> list, String path) {
+    public String writeFile(String path, String generalParser, int groupOfParser) throws IOException {
+        Pattern generalPattern = Pattern.compile(generalParser);
+        Matcher generalMatcher = generalPattern.matcher(new TextReader().readFile(path, StandardCharsets.UTF_8));
+        File writingFile = new File("ProgramFile.txt");
 
-        try(FileOutputStream fos=new FileOutputStream(path)) {
+        String string = null;
 
-            for (char symbol : list) {
-                byte[] buffer = Character.toString(symbol).getBytes();
+        try (FileWriter writer = new FileWriter("ProgramFile.txt",
+                false)) {
 
-                fos.write(buffer, 0, buffer.length);
+            while (generalMatcher.find()) {
+                writer.append(generalMatcher.group(groupOfParser));
+                writer.append("\n");
+                System.out.println("Found: " + generalMatcher.group(groupOfParser));
             }
-        }
-        catch(IOException ex) {
-            System.out.println(ex.getMessage());
-        }
+            string = new TextReader().readFile(path, StandardCharsets.UTF_8);
 
-        System.out.println("The file has been written");
-
+        } catch (IOException ex) {
+            System.err.println("Trouble with writing!");
+        }
+        return string;
     }
+
 }

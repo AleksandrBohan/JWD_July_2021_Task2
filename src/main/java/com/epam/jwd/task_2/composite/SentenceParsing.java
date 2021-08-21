@@ -1,27 +1,27 @@
 package com.epam.jwd.task_2.composite;
 
 import com.epam.jwd.task_2.exceptions.WrongFileName;
-import com.epam.jwd.task_2.parsers.WordsParser;
+import com.epam.jwd.task_2.parsers.WordsPa;
 
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SentenceParsing implements Parsing {
+public class SentenceParsing {
 
     private boolean checkParser;
 
     private List<Parsing> parsers;
 
-    public SentenceParsing(boolean checkParser) throws IOException, WrongFileName {
+   /* public SentenceParsing(boolean checkParser) throws IOException, WrongFileName {
 
         setCheckParser(checkParser);
 
         if (checkParser == true) {
-            addParser("ProgramFile.txt", WordsParser.getWordParser());
+            addParser("ProgramFile.txt", WordsPa.getWordParser());
         }
         else if (checkParser == false){
-            removeParser("ProgramFile.txt" , WordsParser.getWordParser());
+            removeParser("ProgramFile.txt" , WordsPa.getWordParser());
         }
 
         this.parsers = new ArrayList<>();
@@ -40,12 +40,12 @@ public class SentenceParsing implements Parsing {
 
     @Override
     public void addParser(String path, String parser) throws IOException, WrongFileName {
-        new WordsParser().parseIt(path, parser, 0);
+        new WordsPa().parseIt(path, parser, 0);
     }
 
     @Override
     public void removeParser(String path, String parser) throws IOException {
-        new WordsParser().recoverText(path, parser, 0);
+        new WordsPa().recoverText(path, parser, 0);
     }
 
     public List<Parsing> getParsers() {
@@ -62,11 +62,9 @@ public class SentenceParsing implements Parsing {
 
     public void setCheckParser(boolean checkParser) {
         this.checkParser = checkParser;
-    }
-
-   /* public List<String> getList() {
-        return STRING_LIST;
     }*/
+
+
 
 }
 

@@ -1,36 +1,27 @@
 package com.epam.jwd.task_2.composite;
 
 import com.epam.jwd.task_2.exceptions.WrongFileName;
-import com.epam.jwd.task_2.parsers.SentencesParser;
+import com.epam.jwd.task_2.parsers.SentencesPa;
 
 
 import java.io.IOException;
-import java.util.List;
 
-public class TextParsing implements Parsing {
+public class TextParsing  {
 
     private boolean parserCheck;
 
-    public TextParsing(boolean parserCheck) throws IOException, WrongFileName {
+  /* public TextParsing(boolean parserCheck) throws IOException, WrongFileName {
         setParserCheck(parserCheck);
 
         if (parserCheck == true){
-            addParser("ProgramFile.txt", SentencesParser.getSentenceParser());
+            addParser("ProgramFile.txt", SentencesPa.getSentenceParser());
         }
         else if (parserCheck == false){
-            removeParser("ProgramFile.txt", SentencesParser.getSentenceParser());
+            removeParser("ProgramFile.txt", SentencesPa.getSentenceParser());
         }
     }
 
-    @Override
-    public void addParser(String path, String parser) throws IOException, WrongFileName {
-        new SentencesParser().parseIt(path, parser, 0);
-    }
 
-    @Override
-    public void removeParser(String path, String parser) throws IOException {
-        new SentencesParser().recoverText(path ,parser, 1);
-    }
 
 
     public boolean isParserCheck() {
@@ -39,5 +30,5 @@ public class TextParsing implements Parsing {
 
     public void setParserCheck(boolean parserCheck) {
         this.parserCheck = parserCheck;
-    }
+    }*/
 }

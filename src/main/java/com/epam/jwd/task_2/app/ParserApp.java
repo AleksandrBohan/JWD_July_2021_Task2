@@ -40,11 +40,11 @@ public class ParserApp {
 
     public static void main(String[] args) throws WrongFileName, IOException, WrongAnswerException {
 
-        Parsing textParsingFirst = new TextParsing(true);
+     /*   Parsing textParsingFirst = new TextParsing(true);
         SentenceParsing sentenceParsingFirst = new SentenceParsing(true);
 
         SentenceParsing sentenceParsingSecond = new SentenceParsing(false);
-        Parsing textParsingSecond = new TextParsing(false);
+        Parsing textParsingSecond = new TextParsing(false);*/
 
 
 
@@ -54,13 +54,13 @@ public class ParserApp {
     //TODO USE when will finish! parserApp.getPathParser();
        /* new TextAfterParsing("C:\\TsTemp\\ProgramText.txt");
         new SentenceAfterParsing("C:\\TsTemp\\ProgramText.txt");
-        parserApp.getTextAfterParse(SentencesParser.class, "C:\\TsTemp\\FirstText.txt");
+        parserApp.getTextAfterParse(SentencesPa.class, "C:\\TsTemp\\FirstText.txt");
         new OriginalText().rollBackChanges(list,"C:\\TsTemp\\ProgramText.txt");  */
 
-      //  new TextParsing().addParser("ProgramFile.txt", SentencesParser.getSentenceParser(), list);
-       // new SentenceParsing().addText("ProgramFile.txt", WordsParser.getReversedParser());
-        //new SentenceParsing().removeParser("ProgramFile.txt", WordsParser.getReversedParser());
-       //new TextParsing().removeParser("ProgramFile.txt", SentencesParser.getSentenceParser(), list);
+      //  new TextParsing().addParser("ProgramFile.txt", SentencesPa.getSentenceParser(), list);
+       // new SentenceParsing().addText("ProgramFile.txt", WordsPa.getReversedParser());
+        //new SentenceParsing().removeParser("ProgramFile.txt", WordsPa.getReversedParser());
+       //new TextParsing().removeParser("ProgramFile.txt", SentencesPa.getSentenceParser(), list);
 
     }
 }

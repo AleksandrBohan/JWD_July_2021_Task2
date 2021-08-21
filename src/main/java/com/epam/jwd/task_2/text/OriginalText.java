@@ -20,7 +20,7 @@ public class OriginalText {
                 "yes/no");
         String keyWord = scanner.nextLine();
         if (keyWord.equals("yes")) {
-            new TextReader().readFile(list, path);
+        //    new TextReader().readFile(list, path);
         } else if (keyWord.equals("no")) {
             System.out.println("Okey, I understand!");
         } else {

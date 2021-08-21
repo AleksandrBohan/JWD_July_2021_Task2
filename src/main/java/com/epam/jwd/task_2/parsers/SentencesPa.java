@@ -12,7 +12,7 @@ import java.util.regex.Pattern;
 
 
 
-public class SentencesParser extends Parser{
+public class SentencesPa{
 
     private static final String SENTENCE_PARSER = "\\n*\\s*([^!.?]+?([!.?]))\\n*";  //\n*\s*([^!.?]+?([!.?]))\n* TODO new
     //private static final String REVERSE_PARSER = "(\\n*)(.+)\\s(.+)[!.?]";    //
@@ -26,7 +26,7 @@ public class SentencesParser extends Parser{
         return SENTENCE_PARSER;
     }
 
-    @Override
+    /*@Override
     public String readFile(String path, Charset encoding) throws IOException {
         return super.readFile(path, encoding);
     }
@@ -40,27 +40,9 @@ public class SentencesParser extends Parser{
     @Override
     public void recoverText(String path, String parser, int groupOfParser) throws IOException {
         super.recoverText(path, SENTENCE_PARSER, 1);
-    }
+    }*/
 
-    /*public String parseIt(String path, String parser) throws WrongFileName, IOException {
-        Pattern pattern = Pattern.compile(parser);
 
-        Matcher matcher = pattern.matcher(readFile(path, StandardCharsets.UTF_8).trim());
-
-        try (FileWriter writer = new FileWriter("C:\\TsTemp\\FirstText.txt",
-                false)) {
-
-            while (matcher.find()) {
-                writer.append(matcher.group(0));
-                writer.append("\n");
-                System.out.println("Found: " + matcher.group(0));
-            }
-
-        } catch (IOException ex) {
-            System.err.println("Trouble with writing!");
-        }
-        return path;
-    }*/ //TODO
 
 
 

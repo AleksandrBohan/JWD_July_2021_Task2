@@ -1,5 +1,8 @@
 package com.epam.jwd.task_2.chain_of_responsibilyty;
 
+import com.epam.jwd.task_2.exceptions.WrongFileName;
+
+import java.io.IOException;
 import java.util.Objects;
 
 public abstract class Parsing {
@@ -40,6 +43,8 @@ public abstract class Parsing {
                 '}';
     }
 
-    public abstract void getNameParser(TextInstruments textInstruments, TextParts textParts);
+    public abstract void getNameParser(TextInstruments textInstruments, TextParts textParts)
+            throws IOException, WrongFileName;
+
 
 }

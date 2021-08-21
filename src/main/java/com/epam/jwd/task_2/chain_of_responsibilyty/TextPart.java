@@ -12,7 +12,7 @@ public class TextPart extends Parsing{
             textParts.getParserObjects().forEach(parser -> parser.getParsingNames().add("It is a text parser!"));
         } else if (nextParsing != null) {
             textParts.getParserObjects().forEach(parser -> parser.getParsingNames().add("It is a text parser!"));
-            nextParsing.getNameParser(textInstruments,textParts);
+          //  nextParsing.getNameParser(textInstruments,textParts);
         }
     }
 

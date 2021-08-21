@@ -1,7 +1,6 @@
 package com.epam.jwd.task_2.text;
 
 import com.epam.jwd.task_2.exceptions.WrongFileName;
-import com.epam.jwd.task_2.parsers.SentencesParser;
 
 import java.io.IOException;
 
@@ -12,7 +11,7 @@ public class TextAfterParsing {
     public TextAfterParsing(String pathToFile) throws IOException, WrongFileName {
 
         setPathToFile(pathToFile);
-     //TODO   new SentencesParser().parseIt(pathToFile, SentencesParser.getSentenceParser());
+     //TODO   new SentencesPa().parseIt(pathToFile, SentencesPa.getSentenceParser());
 
     }
 
