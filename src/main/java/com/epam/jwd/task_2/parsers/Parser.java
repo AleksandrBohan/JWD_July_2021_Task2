@@ -13,7 +13,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 
-public abstract class ChainOfResponsibilityParser {
+public abstract class Parser {
 
     //private List <String> list = new ArrayList<>();
 

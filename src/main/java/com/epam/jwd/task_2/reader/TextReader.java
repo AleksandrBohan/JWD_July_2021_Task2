@@ -5,6 +5,9 @@ import com.epam.jwd.task_2.writer.TextWriter;
 import java.io.FileInputStream;
 import java.io.FileReader;
 import java.io.IOException;
+import java.nio.charset.Charset;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -12,21 +15,14 @@ public class TextReader {
 
     private String pathToFile;
 
-    public void readFile(List<Character> list, String path){
+    private Charset encoding;
 
-        try(FileInputStream fin=new FileInputStream(path))
-        {
-            System.out.printf("File size: %d bytes \n", fin.available());
-
-            int i=-1;
-            while((i=fin.read())!=-1){
-                list.add((char)i);
-                System.out.print((char)i);
-            }
-
-        } catch(IOException ex){
-            System.out.println("This method called IOException!");
-        }
+    public String readFile(String path, Charset encoding)
+            throws IOException {
+        setPathToFile(path);
+        setEncoding(encoding);
+        byte[] encoded = Files.readAllBytes(Paths.get(path));
+        return new String(encoded, encoding);
     }
 
     public String getPathToFile() {
@@ -35,6 +31,14 @@ public class TextReader {
 
     public void setPathToFile(String pathToFile) {
         this.pathToFile = pathToFile;
+    }
+
+    public Charset getEncoding() {
+        return encoding;
+    }
+
+    public void setEncoding(Charset encoding) {
+        this.encoding = encoding;
     }
 }
 

@@ -16,7 +16,7 @@
 
 
 
-    public class WordsParser extends ChainOfResponsibilityParser {
+    public class WordsParser extends Parser {
 
         private static final String WORD_PARSER = "(\\w+)|[?;:.,!\"]";
 

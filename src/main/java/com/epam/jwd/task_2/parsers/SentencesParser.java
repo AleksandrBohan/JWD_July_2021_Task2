@@ -12,7 +12,7 @@ import java.util.regex.Pattern;
 
 
 
-public class SentencesParser extends ChainOfResponsibilityParser{
+public class SentencesParser extends Parser{
 
     private static final String SENTENCE_PARSER = "\\n*\\s*([^!.?]+?([!.?]))\\n*";  //\n*\s*([^!.?]+?([!.?]))\n* TODO new
     //private static final String REVERSE_PARSER = "(\\n*)(.+)\\s(.+)[!.?]";    //
