@@ -1,29 +1,41 @@
-For an applet this simple, this is all you need to do. Here’s what the applet looks like so far:
-public class HelloAgainApplet extends java.applet.Applet {
- Font f = new Font(“TimesRoman”,Font.BOLD,36);
- public void paint(Graphics g) {
- g.setFont(f);
- g.setColor(Color.red);
- g.drawString(“Hello again!”, 5, 50);
- }
-}
-If you’ve been paying attention, you’ll notice something is wrong with this example up to this
-point. If you don’t know what it is, try saving this file (remember, save it to the same name as
-the class: HelloAgainApplet.java) and compiling it using the Java compiler. You should get a
-bunch of errors similar to this one:
-HelloAgainApplet.java:7: Class Graphics not found in type declaration.
-Why are you getting these errors? Because the classes you’re referring to are part of a package.
-Remember that the only package you have access to automatically is java.lang. You referred to
-the Applet class in the first line of the class definition by referring to its full package name
-(java.applet.Applet). Further on in the program, however, you referred to all kinds of other
-classes as if they were already available.
-There are two ways to solve this problem: refer to all external classes by full package name or
-import the appropriate class or package at the beginning of your class file. Which one you choose
-to do is mostly a matter of choice, although if you find yourself referring to a class in another
-package lots of times, you may want to import it to cut down on the amount of typing.
-In this example, you’ll import the classes you need. There are three of them: Graphics, Font, and
-Color. All three are part of the java.awt package. Here are the lines to import these classes. These
-lines go at the top of your program, before the actual class definition:
-import java.awt.Graphics;
-import java.awt.Font;
-import java.awt.Color;
+    Java in 21 day.
+
+    Actually, given that during this animation there will be a lot of sleeping of various intervals, it
+makes sense to create a method that does the sleeping for the appropriate time interval. Call it
+pauseheres its definition:
+
+        void pause(int time) {
+        try { Thread.sleep(time); }
+        catch (InterruptedException e) { }
+        }
+    Back to the nekorun method. To summarize, nekorun iterates from the start position to the end
+position. For each turn of the loop, it sets the current x position, sets currentimg to the right
+animation frame, calls repaint, and pauses. Got it? Heres the definition of nekorun:
+
+        void nekorun(int start, int end) {
+        for (int i = start; i  end; i=10) {
+        this.xpos = i;
+         swap images
+        if (currentimg == nekopics0)
+        currentimg = nekopics1;
+        else if (currentimg == nekopics1)
+        currentimg = nekopics0;
+        repaint();
+        pause(150);
+        }
+        }
+
+    Note that in that second line you increment the loop by ten pixels. Why ten pixels, and not, say,
+five or eight? The answer is determined mostly through trial and error to see what looks right.
+Ten seems to work best for the animation. When you write your own animations, you have to
+play with both the distances and the sleep times until you get an animation you like.
+    Speaking of repaint, lets cover the paint() method, which paints each frame. Here the paint
+method is trivially simple; all paint is responsible for is painting the current image at the current
+x and y positions. All that information is stored in global variables, so the paint method has only
+a single line in it:
+
+        public void paint(Graphics g) {
+        g.drawImage(currentimg, xpos, ypos, this);
+        }
+    Now lets back up to the run() method, where the main processing of this animation is
+happening.

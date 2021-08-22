@@ -1,64 +1,40 @@
 package com.epam.jwd.task_2.app;
 
-import com.epam.jwd.task_2.composite.Parsing;
-import com.epam.jwd.task_2.composite.SentenceParsing;
-import com.epam.jwd.task_2.composite.TextParsing;
-import com.epam.jwd.task_2.exceptions.WrongAnswerException;
+import com.epam.jwd.task_2.TextObjects.Composite;
+import com.epam.jwd.task_2.TextObjects.Sentence;
 import com.epam.jwd.task_2.exceptions.WrongFileName;
-import com.epam.jwd.task_2.parsers.*;
-import com.epam.jwd.task_2.reader.TextReader;
-
-
+import com.epam.jwd.task_2.parsers.SentenceParser;
+import com.epam.jwd.task_2.parsers.WordParser;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
-
-
+import java.util.stream.Stream;
 
 public class ParserApp {
 
-    public String getPathParser() throws WrongFileName {
-        Scanner scanner = new Scanner(System.in);
+void getFunction() throws IOException, WrongFileName {
+    Scanner scanner = new Scanner(System.in);
+    System.out.println("What function do you want to do?..."
+            + "\n" + "1 - " + "\n" + "2 - " + "\n" + "3 - "  );
+    int choiseNumber = scanner.nextInt();
 
-        System.out.println("Input path to file: ");    //Method getPathParser() should be handed
-                                                       // over to getTextAfterParse() as a parameter
-        String filePath = scanner.nextLine();
+    if (choiseNumber == 1) {
+        new SentenceParser().parseSentences("ProgramFile.txt",
+                SentenceParser.getSentenceParser(), 0);
 
-      // new FileParser().checkFilePath(filePath);
+       new WordParser().parseWords("ProgramFile.txt",
+               WordParser.getWordParser(), 0);
+     //  new WordParser().reversSentence();
+      // new SentenceParser().reversText();
 
-       return filePath;
-    }
-
-    void getTextAfterParse(Object objectForParsing, String path) throws WrongFileName, IOException {
-      //  new TextParser().choiseParsMethod(objectForParsing, path);
-    }
-
-
-    public static void main(String[] args) throws WrongFileName, IOException, WrongAnswerException {
-
-     /*   Parsing textParsingFirst = new TextParsing(true);
-        SentenceParsing sentenceParsingFirst = new SentenceParsing(true);
-
-        SentenceParsing sentenceParsingSecond = new SentenceParsing(false);
-        Parsing textParsingSecond = new TextParsing(false);*/
-
-
-
-
-
-       // ParserApp parserApp = new ParserApp();
-    //TODO USE when will finish! parserApp.getPathParser();
-       /* new TextAfterParsing("C:\\TsTemp\\ProgramText.txt");
-        new SentenceAfterParsing("C:\\TsTemp\\ProgramText.txt");
-        parserApp.getTextAfterParse(SentencesPa.class, "C:\\TsTemp\\FirstText.txt");
-        new OriginalText().rollBackChanges(list,"C:\\TsTemp\\ProgramText.txt");  */
-
-      //  new TextParsing().addParser("ProgramFile.txt", SentencesPa.getSentenceParser(), list);
-       // new SentenceParsing().addText("ProgramFile.txt", WordsPa.getReversedParser());
-        //new SentenceParsing().removeParser("ProgramFile.txt", WordsPa.getReversedParser());
-       //new TextParsing().removeParser("ProgramFile.txt", SentencesPa.getSentenceParser(), list);
 
     }
+}
+
+    public static void main(String[] args) throws IOException, WrongFileName {
+        new ParserApp().getFunction();
+    }
+
+
 }

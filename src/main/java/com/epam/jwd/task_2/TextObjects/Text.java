@@ -6,7 +6,14 @@ public class Text implements Composite {
 
     private String text;
 
+    private Sentence sentenceObject;
+
     List<? extends Text> sentences;
+
+    public Text() {
+        getText();
+        toString();
+    }
 
     public String getText() {
         return text;
@@ -22,6 +29,14 @@ public class Text implements Composite {
 
     public void setSentences(List<? extends Text> sentences) {
         this.sentences = sentences;
+    }
+
+    public Sentence getSentenceObject() {
+        return sentenceObject;
+    }
+
+    public void setSentenceObject(Sentence sentenceObject) {
+        this.sentenceObject = sentenceObject;
     }
 
     public void createText(String sentence, List<Sentence> sentences){
