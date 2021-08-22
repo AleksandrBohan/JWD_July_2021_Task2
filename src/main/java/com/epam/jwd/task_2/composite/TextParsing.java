@@ -1,11 +1,5 @@
 package com.epam.jwd.task_2.composite;
 
-import com.epam.jwd.task_2.exceptions.WrongFileName;
-import com.epam.jwd.task_2.parsers.SentencesPa;
-
-
-import java.io.IOException;
-
 public class TextParsing  {
 
     private boolean parserCheck;

@@ -1,10 +1,5 @@
 package com.epam.jwd.task_2.composite;
 
-import com.epam.jwd.task_2.exceptions.WrongFileName;
-import com.epam.jwd.task_2.parsers.WordsPa;
-
-import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 
 public class SentenceParsing {
