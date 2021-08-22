@@ -7,9 +7,7 @@ import com.epam.jwd.task_2.exceptions.WrongAnswerException;
 import com.epam.jwd.task_2.exceptions.WrongFileName;
 import com.epam.jwd.task_2.parsers.*;
 import com.epam.jwd.task_2.reader.TextReader;
-import com.epam.jwd.task_2.text.OriginalText;
-import com.epam.jwd.task_2.text.SentenceAfterParsing;
-import com.epam.jwd.task_2.text.TextAfterParsing;
+
 
 
 import java.io.IOException;
@@ -28,13 +26,13 @@ public class ParserApp {
                                                        // over to getTextAfterParse() as a parameter
         String filePath = scanner.nextLine();
 
-       new FileParser().checkFilePath(filePath);
+      // new FileParser().checkFilePath(filePath);
 
        return filePath;
     }
 
     void getTextAfterParse(Object objectForParsing, String path) throws WrongFileName, IOException {
-        new TextParser().choiseParsMethod(objectForParsing, path);
+      //  new TextParser().choiseParsMethod(objectForParsing, path);
     }
 
 

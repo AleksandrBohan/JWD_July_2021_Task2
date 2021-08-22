@@ -9,14 +9,8 @@ public class Sentence extends Text implements Composite {
 
     private List<? extends Text> words = new ArrayList<>();
 
-    public Sentence(String sentence, List<? extends Text> words) {
-        super(sentence, words);
-        setWords(words);
-        setSentence(sentence);
-    }
-
     public void createSentence(String word, List<Word> words){
-        words.add(new Word(word));
+        words.add(new Word());
     }
 
 

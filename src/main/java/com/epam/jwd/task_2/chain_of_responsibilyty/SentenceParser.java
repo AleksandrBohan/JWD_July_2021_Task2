@@ -7,7 +7,7 @@ import java.io.IOException;
 
 public class SentenceParser extends Parsing {
 
-    private static final String SENTENCE_PARSER = "\\n*\\s*([^!.?]+?([!.?]))\\n*";
+    private static final String SENTENCE_PARSER = "\\n*([^!.?]+?([!.?]))\\n*";
 
     public SentenceParser(Parsing nextParsing) {
         super(nextParsing);

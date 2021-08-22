@@ -8,10 +8,6 @@ public class Word {
 
     private String word;
 
-    public Word(String word) {
-        setWord(word);
-    }
-
     public String getWord() {
         return word;
     }

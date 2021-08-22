@@ -27,6 +27,7 @@ public class TextWriter {
             while (generalMatcher.find()) {
                 writer.append(generalMatcher.group(groupOfParser));
                 writer.append("\n");
+
                 System.out.println("Found: " + generalMatcher.group(groupOfParser));
             }
             string = new TextReader().readFile(path, StandardCharsets.UTF_8);
