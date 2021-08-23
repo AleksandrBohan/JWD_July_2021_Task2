@@ -1,41 +1,32 @@
-    Java in 21 day.
-
-    Actually, given that during this animation there will be a lot of sleeping of various intervals, it
-makes sense to create a method that does the sleeping for the appropriate time interval. Call it
-pauseheres its definition:
-
-        void pause(int time) {
-        try { Thread.sleep(time); }
-        catch (InterruptedException e) { }
-        }
-    Back to the nekorun method. To summarize, nekorun iterates from the start position to the end
-position. For each turn of the loop, it sets the current x position, sets currentimg to the right
-animation frame, calls repaint, and pauses. Got it? Heres the definition of nekorun:
-
-        void nekorun(int start, int end) {
-        for (int i = start; i  end; i=10) {
-        this.xpos = i;
-         swap images
-        if (currentimg == nekopics0)
-        currentimg = nekopics1;
-        else if (currentimg == nekopics1)
-        currentimg = nekopics0;
-        repaint();
-        pause(150);
-        }
-        }
-
-    Note that in that second line you increment the loop by ten pixels. Why ten pixels, and not, say,
-five or eight? The answer is determined mostly through trial and error to see what looks right.
-Ten seems to work best for the animation. When you write your own animations, you have to
-play with both the distances and the sleep times until you get an animation you like.
-    Speaking of repaint, lets cover the paint() method, which paints each frame. Here the paint
-method is trivially simple; all paint is responsible for is painting the current image at the current
-x and y positions. All that information is stored in global variables, so the paint method has only
-a single line in it:
-
-        public void paint(Graphics g) {
-        g.drawImage(currentimg, xpos, ypos, this);
-        }
-    Now lets back up to the run() method, where the main processing of this animation is
-happening.
+Declaring Variables
+To use any variable in a Java program, you must first declare it. Variable declarations consist of
+a type and a variable name:
+int myAge;
+String myName;
+boolean isTired;
+Variable definitions can go anywhere in a method definition (that is, anywhere a regular Java
+statement can go), although they are most commonly declared at the beginning of the definition
+before they are used:
+public static void main (String args) {
+ int count;
+ String title;
+ boolean isAsleep;
+.
+}
+You can string together variable names with the same type:
+int x, y, z;
+String firstName, LastName;
+You can also give each variable an initial value when you declare it:
+int myAge, mySize, numShoes = 28;
+String myName = Laura;
+boolean isTired = true;
+int a = 4, b = 5, c = 6;
+If there are multiple variables on the same line with only one initializer (as in the first of the
+previous examples), the initial value applies to only the last variable in a declaration. You can also
+group individual variables and initializers on the same line using commas, as with the last
+example, above.
+Local variables must be given values before they can be used (your Java program will not compile
+if you try to use an unassigned local variable). For this reason, its a good idea always to give local
+variables initial values. Instance and class variable definitions do not have this restriction (their
+initial value depends on the type of the variable: null for instances of classes, 0 for numeric
+variables, 0 for characters, and false for booleans).

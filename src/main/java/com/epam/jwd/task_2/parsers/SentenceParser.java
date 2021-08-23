@@ -9,6 +9,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -19,41 +20,65 @@ public class SentenceParser {
         return SENTENCE_PARSER;
     }
 
-    private static final String SENTENCE_PARSER = "\\s*([^!.?]+?([!.?]))\\n*";
+    private static final String SENTENCE_PARSER = "\\n*([^!.?]+?([!.?]))\\n*";
 
-    private List<Sentence> text = new ArrayList<>();
+    public List<String> getText() {
+        return text;
+    }
 
-    public List<Sentence> parseSentences(String path, String generalParser, int groupOfParser)
+    public void setText(List<String> text) {
+        this.text = text;
+    }
+
+    private List<String> text = new ArrayList<>();
+
+    public List<String> parseSentences(String path, String generalParser, List<String> sentenceList)
             throws WrongFileName, IOException {
+
         Pattern generalPattern = Pattern.compile(generalParser);
 
         Matcher generalMatcher = generalPattern.matcher(new TextReader().readFile(path, StandardCharsets.UTF_8));
 
 
-                while (generalMatcher.find()) {
-                new Text().createText(generalMatcher.group(groupOfParser), text);
+
+            while (generalMatcher.find()) {
+                //writer.append(generalMatcher.group(1));
+               // writer.append("\n");
+                new Text(generalMatcher.group(1), sentenceList).createText(generalMatcher.group(1), sentenceList);
                 System.out.println("Found: " + generalMatcher.group(1));
 
-
-        }
-        return text;
-
-    }
-
-   public void reversText() throws IOException {
-        for (Object line : text) {
-
-            System.out.println(line);
-            try (FileWriter writer = new FileWriter("ProgramFile.txt",
-                    false)) {
-                writer.append((Character) line);
             }
+
+
+            return sentenceList;
+        }
+
+
+   public void reversText(List<String> textList) throws IOException {
+
+       System.out.println("Roll back this text!");
+        for (String line : textList) {
+            System.out.print(line);
+
         }
     }
 
 
     public static void main(String[] args) throws IOException, WrongFileName {
-        new SentenceParser().parseSentences("ProgramFile.txt", SENTENCE_PARSER, 0);
+        List<String> parseSentences = new ArrayList<>();
+        List<String>parser = new SentenceParser()
+                .parseSentences("ProgramFile.txt", SENTENCE_PARSER, parseSentences);
+
+        for (int i = 0; i<parser.size(); i++){
+            System.out.println(new WordParser().sentenceParser(parser.get(i)));
+        }
+        //TODO ADD PARAMETR  new WordParser().reversSentence();
+        new SentenceParser().reversText(parseSentences);
+       // new SentenceParser().parseSentences("ProgramFile.txt", SENTENCE_PARSER, parseSentences);
+
+
+
+
     }
 
     @Override
