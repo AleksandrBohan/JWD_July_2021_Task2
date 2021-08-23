@@ -4,6 +4,6 @@ import java.util.List;
 
 public interface Composite {
 
-    public void getContent(List <String> list);
+    public void getContent();
 
 }

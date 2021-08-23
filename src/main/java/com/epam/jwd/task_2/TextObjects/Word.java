@@ -8,12 +8,22 @@ public class Word implements Composite {
 
     private String word;
 
+    public Word(String word) {
+        setWord(word);
+    }
+
     public String getWord() {
         return word;
     }
 
     public void setWord(String word) {
         this.word = word;
+    }
+
+    @Override
+    public void getContent() {
+        setWord(word);
+        System.out.println(getWord());
     }
 
     @Override
@@ -35,11 +45,4 @@ public class Word implements Composite {
                 "word='" + word + '\'' +
                 '}';
     }
-
-    @Override
-    public void getContent(List<String> list) {
-        setWord(word);
-        System.out.println(getWord());
-    }
-
 }
