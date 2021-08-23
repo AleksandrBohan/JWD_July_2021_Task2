@@ -8,13 +8,6 @@ public class Word implements Composite {
 
     private String word;
 
-    private Word wordObject;
-
-    public Word() {
-        getWord();
-        toString();
-    }
-
     public String getWord() {
         return word;
     }
@@ -49,11 +42,4 @@ public class Word implements Composite {
         System.out.println(getWord());
     }
 
-    public Word getWordObject() {
-        return wordObject;
-    }
-
-    public void setWordObject(Word wordObject) {
-        this.wordObject = wordObject;
-    }
 }

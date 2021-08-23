@@ -10,11 +10,6 @@ public class Text implements Composite {
 
     List<? extends Text> sentences;
 
-    public Text() {
-        getText();
-        toString();
-    }
-
     public String getText() {
         return text;
     }
@@ -39,8 +34,9 @@ public class Text implements Composite {
         this.sentenceObject = sentenceObject;
     }
 
-    public void createText(String sentence, List<Sentence> sentences){
-        sentences.add(new Sentence());
+    public void createText(String sentence, List<String> sentences){
+        new Sentence().setSentence(sentence);
+        sentences.add(new Sentence().getSentence());
     }
 
     @Override

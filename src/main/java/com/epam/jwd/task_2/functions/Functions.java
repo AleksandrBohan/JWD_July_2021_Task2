@@ -12,15 +12,9 @@ import java.util.stream.Stream;
 
 public class Functions {
 
-   void function1() throws IOException, WrongFileName {
-        List<Sentence> list = new SentenceParser().parseSentences("ProgramFile.txt",
-                SentenceParser.getSentenceParser(), 0);
-       Stream stream = list.stream()
-        }
+  
+   }
 
 
 
-    public static void main(String[] args) throws IOException, WrongFileName {
-       // new Functions().function1();
-    }
-}
+

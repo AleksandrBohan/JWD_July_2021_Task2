@@ -19,7 +19,7 @@ public class WordParser {
         return WORD_PARSER;
     }
 
-    private static final String WORD_PARSER = "(\\w+)|[?;:.,!\"={}()]|\\s*";   // TODO USE IT! (\w+)|[?;:.,!"={}()]|\s*
+    private static final String WORD_PARSER = "(\\w+)|[?;:.,!\"={}()]|(\\s*)";   // TODO USE IT! (\w+)|[?;:.,!"={}()]|\s*
 
     private List<Word> sentence = new ArrayList<>();
 
@@ -34,20 +34,15 @@ public class WordParser {
                     false)) {
                 while (generalMatcher.find()) {
                     writer.append(generalMatcher.group(groupOfParser));
-                //writer.append("\n");
+              // writer.append("\n");
                 new Sentence().createSentence(generalMatcher.group(groupOfParser), sentence);
-                System.out.println("Found: " + generalMatcher.group(groupOfParser));
+                System.out.println("Found: " + generalMatcher.group(1));
 
             }
 
 
         }
         return sentence;
-    }
-
-    public void hh() throws IOException, WrongFileName {
-        parseWords("ProgramFile.txt", WORD_PARSER, 0);
-       // new Text().getContent(Collections.singletonList(parseSentences("ProgramFile.txt", WORD_PARSER, 0)));
     }
 
    public void reversSentence() throws IOException {
@@ -57,6 +52,7 @@ public class WordParser {
             try (FileWriter writer = new FileWriter("ProgramFile.txt",
                     false)) {
                 writer.append((Character) line);
+
             }
         }
     }

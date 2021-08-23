@@ -30,15 +30,10 @@ public class SentenceParser {
         Matcher generalMatcher = generalPattern.matcher(new TextReader().readFile(path, StandardCharsets.UTF_8));
 
 
-
-            try (FileWriter writer = new FileWriter("ProgramFile.txt",
-                    false)) {
                 while (generalMatcher.find()) {
-                writer.append(generalMatcher.group(groupOfParser));
-                //writer.append("\n");
                 new Text().createText(generalMatcher.group(groupOfParser), text);
-                System.out.println("Found: " + generalMatcher.group(groupOfParser));
-            }
+                System.out.println("Found: " + generalMatcher.group(1));
+
 
         }
         return text;
@@ -56,10 +51,6 @@ public class SentenceParser {
         }
     }
 
-    public void hh() throws IOException, WrongFileName {
-        parseSentences("ProgramFile.txt", SENTENCE_PARSER, 0);
-       // new Text().getContent(Collections.singletonList(parseSentences("ProgramFile.txt", SENTENCE_PARSER, 0)));
-    }
 
     public static void main(String[] args) throws IOException, WrongFileName {
         new SentenceParser().parseSentences("ProgramFile.txt", SENTENCE_PARSER, 0);
