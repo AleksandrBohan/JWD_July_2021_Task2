@@ -15,7 +15,8 @@ public class WordParser {
 
     private List<String> sentenceArray = new ArrayList<>();
 
-   List<String> sentenceParser(String sentenceLine){
+   public List<String> sentenceParser(String sentenceLine, List<String> writeWords){
+       this.sentenceArray = writeWords;
        Pattern generalPattern = Pattern.compile(WORD_PARSER);
 
        Matcher generalMatcher = generalPattern.matcher(sentenceLine);
@@ -23,10 +24,12 @@ public class WordParser {
        while (generalMatcher.find()) {
            // writer.append(generalMatcher.group(1));
            // writer.append("\n");
-           new Sentence(generalMatcher.group(0), sentenceArray).createSentence(generalMatcher.group(0), sentenceArray);
-           System.out.println("Found: " + generalMatcher.group(0));
+           new Sentence(generalMatcher.group(0), writeWords).createSentence(generalMatcher.group(0), writeWords);
+           System.out.println("Found word: " + generalMatcher.group(0));
+
        }
-       return sentenceArray;
+       System.out.println("End Of sentence!");
+       return writeWords;
    }
 
 

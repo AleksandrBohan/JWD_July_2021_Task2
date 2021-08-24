@@ -1,28 +1,50 @@
 package com.epam.jwd.task_2.app;
 
 import com.epam.jwd.task_2.exceptions.WrongFileName;
+import com.epam.jwd.task_2.functions.Functions;
 import com.epam.jwd.task_2.parsers.SentenceParser;
 import com.epam.jwd.task_2.parsers.WordParser;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 
 public class ParserApp {
 
-void getFunction() throws IOException, WrongFileName {
-    Scanner scanner = new Scanner(System.in);
-    System.out.println("What function do you want to do?..."
-            + "\n" + "1 - " + "\n" + "2 - " + "\n" + "3 - "  );
-    int choiseNumber = scanner.nextInt();
+    void callFunction12(int sizeOfWords) throws IOException, WrongFileName {
+        List<String> parseSentences = new ArrayList<>();
+        List<String> writeWords = new ArrayList<>();
+        List<String>parser = new SentenceParser()
+                .parseSentences("ProgramFile.txt", SentenceParser.getSentenceParser(), parseSentences);
 
-    if (choiseNumber == 1) {
+        for (int i = 0; i<parser.size(); i++){
+            new WordParser().sentenceParser(parser.get(i), writeWords);
+        }
 
+
+        for (int i = 0; i < writeWords.size(); i++){
+            Functions functions = new Functions();
+            System.out.println(functions.formatText12(writeWords.get(i), sizeOfWords));
+
+        }
     }
-}
+
+    void getFunction() throws IOException, WrongFileName {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("What function do you want to do?..."
+                + "\n" + "1 - " + "\n" + "2 - " + "\n" + "3 - "  );
+        int choiseNumber = scanner.nextInt();
+
+        if (choiseNumber == 1) {
+            callFunction12(4);
+        }
+    }
 
     public static void main(String[] args) throws IOException, WrongFileName {
         new ParserApp().getFunction();
+        //System.out.println(5/5);
     }
 
 

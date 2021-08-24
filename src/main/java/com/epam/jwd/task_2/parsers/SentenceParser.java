@@ -45,7 +45,8 @@ public class SentenceParser {
                 //writer.append(generalMatcher.group(1));
                // writer.append("\n");
                 new Text(generalMatcher.group(1), sentenceList).createText(generalMatcher.group(1), sentenceList);
-                System.out.println("Found: " + generalMatcher.group(1));
+                System.out.println("Found sentence : " + generalMatcher.group(1));
+                System.out.println("End of sentence!");
 
             }
 
@@ -60,6 +61,7 @@ public class SentenceParser {
         for (String line : textList) {
             System.out.print(line);
 
+
         }
     }
 
@@ -70,7 +72,7 @@ public class SentenceParser {
                 .parseSentences("ProgramFile.txt", SENTENCE_PARSER, parseSentences);
 
         for (int i = 0; i<parser.size(); i++){
-            System.out.println(new WordParser().sentenceParser(parser.get(i)));
+
         }
         //TODO ADD PARAMETR  new WordParser().reversSentence();
         new SentenceParser().reversText(parseSentences);
