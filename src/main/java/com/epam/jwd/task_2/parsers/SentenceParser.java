@@ -45,8 +45,8 @@ public class SentenceParser {
                 //writer.append(generalMatcher.group(1));
                // writer.append("\n");
                 new Text(generalMatcher.group(1), sentenceList).createText(generalMatcher.group(1), sentenceList);
-                System.out.println("Found sentence : " + generalMatcher.group(1));
-                System.out.println("End of sentence!");
+              //TODO  System.out.println("Found sentence : " + generalMatcher.group(1));
+              //  System.out.println("End of sentence!");
 
             }
 

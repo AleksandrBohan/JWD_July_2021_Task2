@@ -3,40 +3,51 @@ package com.epam.jwd.task_2.functions;
 
 
 import com.epam.jwd.task_2.exceptions.WrongFileName;
+import com.epam.jwd.task_2.parsers.PunctuationMarksParser;
 import com.epam.jwd.task_2.parsers.SentenceParser;
 import com.epam.jwd.task_2.parsers.WordParser;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class Functions {
 
-   public List<String> function5_reverse(List<String> wordsList) throws IOException, WrongFileName {
-      List<java.lang.String> parseSentences = new ArrayList<>();
-      List<java.lang.String>parser = new SentenceParser()
-              .parseSentences("ProgramFile.txt", SentenceParser.getSentenceParser(), parseSentences);
+   public void sentenceOrder() throws IOException, WrongFileName {
+      List<String> sentenceOrderList = new ArrayList<>();
 
-      for (int i = 0; i<parser.size(); i++){
-         reverseWords(parser.get(i));
+      List<String> wordsList = new ArrayList<>();
+
+      Map<Integer, String> sentenceOrderMap = new TreeMap<>();
+
+      List<String>parser = new SentenceParser()
+              .parseSentences("ProgramFile.txt",
+                      SentenceParser.getSentenceParser(), sentenceOrderList);
+
+      new PunctuationMarksParser().parseText(sentenceOrderList);
+
+      for (int i = 0; i<sentenceOrderList.size(); i++){
+         new WordParser().sentenceParser(sentenceOrderList.get(i).trim(), wordsList);
+
+         sentenceOrderMap.put(wordsList.size(), sentenceOrderList.get(i));
+
       }
-      return wordsList;
-      /*Declaring Variables
-      To use any variable in a Java program, you must first declare it.*/
+      Set<Map.Entry<Integer, String>> entries = sentenceOrderMap.entrySet();
+
+      for (Map.Entry<Integer, String> entry : entries){
+         System.out.println("tHIS" + entry.getKey() + "    " +  entry.getValue());
+      }
+
    }
 
    public void reverseWords(String sentence) throws IOException, WrongFileName {
       String sentenceWithoutSpaces = sentence.trim();
       List<String> wordsList = new ArrayList<>();
       new WordParser().sentenceParser(sentenceWithoutSpaces, wordsList);
-
       Collections.swap(wordsList, 0, wordsList.size()-3);
       for (String line : wordsList){
          System.out.println(line);
       }
-
    }
 
    public void alphabetOrder(List <String> sortList){
@@ -71,7 +82,7 @@ public class Functions {
    }
 
    public static boolean isVowel(String incomingText) {
-      switch ((char)Character.toLowerCase(incomingText.charAt(0))) {
+      switch (Character.toLowerCase(incomingText.charAt(0))) {
          case 'a':
          case 'e':
          case 'i':

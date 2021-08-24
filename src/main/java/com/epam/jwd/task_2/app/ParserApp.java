@@ -7,14 +7,28 @@ import com.epam.jwd.task_2.parsers.SentenceParser;
 import com.epam.jwd.task_2.parsers.WordParser;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
 
 
 public class ParserApp {
 
-    void callFunction6() throws IOException, WrongFileName {
+    public void function2() throws IOException, WrongFileName {
+       new Functions().sentenceOrder();
+        }
+
+
+    public void function5_reverse(List<String> wordsList) throws IOException, WrongFileName {
+        List<java.lang.String> parseSentences = new ArrayList<>();
+        List<java.lang.String>parser = new SentenceParser()
+                .parseSentences("ProgramFile.txt", SentenceParser.getSentenceParser(), parseSentences);
+
+        for (int i = 0; i<parser.size(); i++){
+            new Functions().reverseWords(parser.get(i));
+        }
+
+    }
+
+    /*void callFunction6() throws IOException, WrongFileName {
       List<String> words = new ArrayList<>();
       List <String> wordsList = new WordParser().getWordsFromSentences(words);
       List <String> wordsForSorting = new ArrayList<>();
@@ -26,7 +40,7 @@ public class ParserApp {
 
         }
         functions.alphabetOrder(words);
-    }
+    }*/
 
     void callFunction12(int sizeOfWords) throws IOException, WrongFileName {
         List<String> parseSentences = new ArrayList<>();
@@ -48,6 +62,7 @@ public class ParserApp {
 
     void getFunction() throws IOException, WrongFileName {
         List<String> reverseList = new ArrayList<>();
+        Map<Integer, String> sortMap = new LinkedHashMap<>();
         Scanner scanner = new Scanner(System.in);
         System.out.println("What function do you want to do?..."
                 + "\n" + "1 - " + "\n" + "2 - " + "\n" + "3 - "  );
@@ -57,10 +72,10 @@ public class ParserApp {
             callFunction12(4);
         }
         if (choiseNumber == 2){
-            callFunction6();
+            function2();
         }
         if (choiseNumber == 3){
-            new Functions().function5_reverse(reverseList);
+            function5_reverse(reverseList);
         }
     }
 

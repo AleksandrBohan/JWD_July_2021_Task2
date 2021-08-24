@@ -27,10 +27,10 @@ public class WordParser {
            // writer.append(generalMatcher.group(1));
            // writer.append("\n");
            new Sentence(generalMatcher.group(0), writeWords).createSentence(generalMatcher.group(0), writeWords);
-           System.out.println("Found word: " + generalMatcher.group(0));
+         //TODO  System.out.println("Found word: " + generalMatcher.group(0));
 
        }
-       System.out.println("End Of sentence!");
+       //System.out.println("End Of sentence!");
        return writeWords;
    }
 
@@ -46,6 +46,18 @@ public class WordParser {
        }
        return wordsList;
    }
+
+    public List<String> getSentenceWords(List<String> wordsList) throws IOException, WrongFileName {
+        List<String> parseSentences = new ArrayList<>();
+        this.words = wordsList;
+        List<String>parser = new SentenceParser()
+                .parseSentences("ProgramFile.txt", SentenceParser.getSentenceParser(), parseSentences);
+
+        for (int i = 0; i<parser.size(); i++){
+            new WordParser().sentenceParser(parser.get(i), wordsList);
+        }
+        return parser;
+    }
 
 
 
