@@ -2,6 +2,7 @@ package com.epam.jwd.task_2.app;
 
 import com.epam.jwd.task_2.exceptions.WrongFileName;
 import com.epam.jwd.task_2.functions.Functions;
+import com.epam.jwd.task_2.parsers.PunctuationMarksParser;
 import com.epam.jwd.task_2.parsers.SentenceParser;
 import com.epam.jwd.task_2.parsers.WordParser;
 
@@ -19,13 +20,12 @@ public class ParserApp {
       List <String> wordsForSorting = new ArrayList<>();
       Functions functions = new Functions();
         System.out.println(wordsList.size());
-        for (int i = 0; i < wordsList.size(); i++){
-            System.out.println(wordsList
-            .get(i));
-            wordsForSorting.add(wordsList.get(i));
+        new PunctuationMarksParser().parseText(words);
+        for (int i = 0; i < words.size(); i++){
+            System.out.println(words.get(i));
 
         }
-        functions.alphabetOrder(wordsList);
+        functions.alphabetOrder(words);
     }
 
     void callFunction12(int sizeOfWords) throws IOException, WrongFileName {
@@ -47,6 +47,7 @@ public class ParserApp {
     }
 
     void getFunction() throws IOException, WrongFileName {
+        List<String> reverseList = new ArrayList<>();
         Scanner scanner = new Scanner(System.in);
         System.out.println("What function do you want to do?..."
                 + "\n" + "1 - " + "\n" + "2 - " + "\n" + "3 - "  );
@@ -57,6 +58,9 @@ public class ParserApp {
         }
         if (choiseNumber == 2){
             callFunction6();
+        }
+        if (choiseNumber == 3){
+            new Functions().function5_reverse(reverseList);
         }
     }
 
