@@ -15,6 +15,8 @@ public class WordParser {
 
     private List<String> sentenceArray = new ArrayList<>();
 
+    private List<String> words = new ArrayList<>();
+
    public List<String> sentenceParser(String sentenceLine, List<String> writeWords){
        this.sentenceArray = writeWords;
        Pattern generalPattern = Pattern.compile(WORD_PARSER);
@@ -30,6 +32,19 @@ public class WordParser {
        }
        System.out.println("End Of sentence!");
        return writeWords;
+   }
+
+
+   public List<String> getWordsFromSentences(List<String> wordsList) throws IOException, WrongFileName {
+       List<String> parseSentences = new ArrayList<>();
+       this.words = wordsList;
+       List<String>parser = new SentenceParser()
+               .parseSentences("ProgramFile.txt", SentenceParser.getSentenceParser(), parseSentences);
+
+       for (int i = 0; i<parser.size(); i++){
+           new WordParser().sentenceParser(parser.get(i), wordsList);
+       }
+       return wordsList;
    }
 
 

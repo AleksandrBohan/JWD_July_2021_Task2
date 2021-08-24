@@ -13,6 +13,21 @@ import java.util.Scanner;
 
 public class ParserApp {
 
+    void callFunction6() throws IOException, WrongFileName {
+      List<String> words = new ArrayList<>();
+      List <String> wordsList = new WordParser().getWordsFromSentences(words);
+      List <String> wordsForSorting = new ArrayList<>();
+      Functions functions = new Functions();
+        System.out.println(wordsList.size());
+        for (int i = 0; i < wordsList.size(); i++){
+            System.out.println(wordsList
+            .get(i));
+            wordsForSorting.add(wordsList.get(i));
+
+        }
+        functions.alphabetOrder(wordsList);
+    }
+
     void callFunction12(int sizeOfWords) throws IOException, WrongFileName {
         List<String> parseSentences = new ArrayList<>();
         List<String> writeWords = new ArrayList<>();
@@ -39,6 +54,9 @@ public class ParserApp {
 
         if (choiseNumber == 1) {
             callFunction12(4);
+        }
+        if (choiseNumber == 2){
+            callFunction6();
         }
     }
 
