@@ -1,9 +1,12 @@
 package com.epam.jwd.task_2.app;
 
-import com.epam.jwd.task_2.exceptions.WrongFileName;
+import com.epam.jwd.task_2.exceptions.WrongAnswerException;
 import com.epam.jwd.task_2.functions.Functions;
 import com.epam.jwd.task_2.parsers.SentenceParser;
 import com.epam.jwd.task_2.parsers.WordParser;
+import org.apache.logging.log4j.Level;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.io.IOException;
 import java.util.*;
@@ -12,7 +15,14 @@ import java.util.stream.Stream;
 
 public class ParserApp {
 
-    public static <K, V extends Comparable<? super K>> Map<Integer, String>
+   private List<String> wordsSentences = new ArrayList<>();
+   private List<String> parseSentences = new ArrayList<>();
+   private List<String> originalSentence = new ArrayList<>();
+   private List<String> originalText = new ArrayList<>();
+
+    private static final Logger logger = LogManager.getLogger(ParserApp.class);
+
+    public  <K, V extends Comparable<? super K>> Map<Integer, String>
     sortMapByValue( Map<Integer, String> map )
     {
         Map<Integer,String> orderMap = new LinkedHashMap<>();
@@ -29,65 +39,56 @@ public class ParserApp {
     }
 
 
-    public void function5_reverse(List<String> wordsList) throws IOException, WrongFileName {
-        List<java.lang.String> parseSentences = new ArrayList<>();
-        List<java.lang.String>parser = new SentenceParser()
-                .parseSentences("ProgramFile.txt", SentenceParser.getSentenceParser(), parseSentences);
+    public void function5_reverse() {
+
+        List<String>parser = new SentenceParser()
+                .parseSentences("ProgramFile.txt", SentenceParser.getSentenceParser(),
+                        parseSentences, originalText);
 
         for (int i = 0; i<parser.size(); i++){
-            new Functions().reverseWords(parser.get(i));
+            try {
+                new Functions().reverseWords(parser.get(i));
+            } catch (IOException e) {
+                logger.log(Level.ERROR, "IOException in function5_reverse() method", e);
+            }
             System.out.println();
             System.out.println();
         }
 
     }
 
-    void callFunction6() throws IOException, WrongFileName {
-      List<String> words = new ArrayList<>();
-      List <String> wordsList = new WordParser().getWordsFromSentences(words);
-      List <String> wordsForSorting = new ArrayList<>();
-      Functions functions = new Functions();
-        System.out.println(wordsList.size());
-       // new PunctuationMarksParser().parseText(words);
-        for (int i = 0; i < words.size(); i++){
-            System.out.println(words.get(i));
+    void callFunction12(int sizeOfWords) {
 
-        }
-        functions.alphabetOrder(words);
-    }
-
-    void callFunction12(int sizeOfWords) throws IOException, WrongFileName {
-        List<String> parseSentences = new ArrayList<>();
-        List<String> writeWords = new ArrayList<>();
         List<String>parser = new SentenceParser()
-                .parseSentences("ProgramFile.txt", SentenceParser.getSentenceParser(), parseSentences);
+                .parseSentences("ProgramFile.txt", SentenceParser.getSentenceParser(),
+                        parseSentences, originalText);
 
         for (int i = 0; i<parseSentences.size(); i++){
-            new WordParser().sentenceParser(parser.get(i), writeWords);
+            new WordParser().sentenceParser(parser.get(i),wordsSentences, originalSentence);
         }
 
-        writeWords.removeIf(item -> item == null || "".equals(item));
+        wordsSentences.removeIf(item -> item == null || "".equals(item));
 
 
-        for (int i = 0; i < writeWords.size(); i++){
-            //System.out.println(writeWords.get(i));
+        for (int i = 0; i < wordsSentences.size(); i++){
 
             Functions functions = new Functions();
-            System.out.println(functions.formatText12(writeWords.get(i), sizeOfWords));
+            System.out.println(functions.formatText12(wordsSentences.get(i), sizeOfWords));
 
         }
 
 
     }
 
-    List<String> getTextConstructor() throws IOException, WrongFileName {
-        List<String> wordsSentences = new ArrayList<>();
-        List<String> parseSentences = new ArrayList<>();
-        List<String>parser = new SentenceParser()
-                .parseSentences("ProgramFile.txt", SentenceParser.getSentenceParser(), parseSentences);
+    List<String> getTextConstructor() throws IOException {
+
+        List<String> parser = new SentenceParser()
+                .parseSentences("ProgramFile.txt", SentenceParser.getSentenceParser(),
+                        parseSentences, originalText);
 
         for (int i = 0; i<parser.size()-1; i++) {
-            new WordParser().sentenceParser(parser.get(i), wordsSentences);
+            new WordParser().sentenceParser(parser.get(i), wordsSentences,
+                    originalSentence);
         }
         wordsSentences.removeIf(item -> item == null || "".equals(item));
         for (int i = 0; i < wordsSentences.size()-1; i++){
@@ -99,37 +100,72 @@ public class ParserApp {
     }
 
     void getRollBack(List<String> parseSentences) throws IOException {
-        new WordParser().reversSentence(parseSentences);
-        new SentenceParser().reversText(parseSentences);
+        new WordParser().reversSentence(originalSentence);
+        new SentenceParser().reversText(originalText);
     }
 
-    void getFunction() throws IOException, WrongFileName {
+    void getFunction() throws IOException, WrongAnswerException {
         List<String> reverseList = new ArrayList<>();
         Map<Integer, String> sortMap = new LinkedHashMap<>();
         Scanner scanner = new Scanner(System.in);
         System.out.println("What function do you want to do?..."
-                + "\n" + "1 - " + "\n" + "2 - " + "\n" + "3 - "  );
+                + "\n" + "1 - " + "\n" + "2 - " + "\n" + "3 - ");
         int choiseNumber = scanner.nextInt();
 
         if (choiseNumber == 1) {
             callFunction12(4);
-        }
-        if (choiseNumber == 2){
+        } else if (choiseNumber == 2) {
             sortMapByValue(new Functions().sentenceOrder());
-        }
-        if (choiseNumber == 3){
-            function5_reverse(reverseList);
+        } else if (choiseNumber == 3) {
+            function5_reverse();
+        } else {
+            logger.error("Input isn't valid! Personal exception");
+            throw new WrongAnswerException("There was input other number here!" +
+                    "(This number isn't valid)", choiseNumber);
+
         }
     }
 
-    public static void main(String[] args) throws IOException, WrongFileName {
+
+    public static void main(String[] args) throws IOException, WrongAnswerException {
         List<String> rollBackList = new ArrayList<>();
         ParserApp parserApp = new ParserApp();
         parserApp.getFunction();
         parserApp.getTextConstructor();
         parserApp.getRollBack(rollBackList);
-        //System.out.println(5/5);
+
     }
 
 
+    public List<String> getWordsSentences() {
+        return wordsSentences;
+    }
+
+    public void setWordsSentences(List<String> wordsSentences) {
+        this.wordsSentences = wordsSentences;
+    }
+
+    public List<String> getParseSentences() {
+        return parseSentences;
+    }
+
+    public void setParseSentences(List<String> parseSentences) {
+        this.parseSentences = parseSentences;
+    }
+
+    public List<String> getOriginalSentence() {
+        return originalSentence;
+    }
+
+    public void setOriginalSentence(List<String> originalSentence) {
+        this.originalSentence = originalSentence;
+    }
+
+    public List<String> getOriginalText() {
+        return originalText;
+    }
+
+    public void setOriginalText(List<String> originalText) {
+        this.originalText = originalText;
+    }
 }

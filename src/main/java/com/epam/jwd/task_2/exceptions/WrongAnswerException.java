@@ -2,16 +2,16 @@ package com.epam.jwd.task_2.exceptions;
 
 public class WrongAnswerException extends Exception {
 
-    private String answerWord;
+    private int answerWord;
 
-    public WrongAnswerException(String invalidWordMessage, String answer){
+    public WrongAnswerException(String invalidWordMessage, int answer){
 
         super(invalidWordMessage);
 
         this.answerWord = answer;
     }
 
-    public String getAnswerWord() {
+    public int getAnswerWord() {
         return answerWord;
     }
 

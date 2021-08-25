@@ -1,41 +1,52 @@
 package com.epam.jwd.task_2.writer;
 
-import com.epam.jwd.task_2.reader.TextReader;
-
-
-import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.nio.charset.StandardCharsets;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+import java.util.Objects;
+
 
 public class TextWriter {
 
-    private String pathToFile;
+    private String lineForWriting;
 
-    public String writeFile(String path, String generalParser, int groupOfParser) throws IOException {
-        Pattern generalPattern = Pattern.compile(generalParser);
-        Matcher generalMatcher = generalPattern.matcher(new TextReader().readFile(path, StandardCharsets.UTF_8));
-        File writingFile = new File("ProgramFile.txt");
-
-        String string = null;
+    public void writeFile(String lineForWriting) throws IOException {
 
         try (FileWriter writer = new FileWriter("ProgramFile.txt",
                 false)) {
+            writer.append(lineForWriting);
+            writer.append("\n");
 
-            while (generalMatcher.find()) {
-                writer.append(generalMatcher.group(groupOfParser));
-                writer.append("\n");
-
-                System.out.println("Found: " + generalMatcher.group(groupOfParser));
-            }
-            string = new TextReader().readFile(path, StandardCharsets.UTF_8);
-
-        } catch (IOException ex) {
-            System.err.println("Trouble with writing!");
+            System.out.println("Found: " + lineForWriting);
         }
-        return string;
+
+
     }
 
+    public String getLineForWriting() {
+        return lineForWriting;
+    }
+
+    public void setLineForWriting(String lineForWriting) {
+        this.lineForWriting = lineForWriting;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        TextWriter that = (TextWriter) o;
+        return Objects.equals(lineForWriting, that.lineForWriting);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(lineForWriting);
+    }
+
+    @Override
+    public String toString() {
+        return "TextWriter{" +
+                "lineForWriting='" + lineForWriting + '\'' +
+                '}';
+    }
 }
