@@ -5,6 +5,7 @@ import com.epam.jwd.task_2.TextObjects.Sentence;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -30,7 +31,7 @@ public class WordParser {
                    .createSentence(generalMatcher.group(1), writeWords);
            new Sentence(generalMatcher.group(0), originalSentence)
                    .createSentence(generalMatcher.group(0), originalSentence);
-           System.out.println("Found word: " + generalMatcher.group(0));
+          // System.out.println("Found word: " + generalMatcher.group(0));
 
        }
 
@@ -89,4 +90,23 @@ public class WordParser {
         this.sentenceArray = sentenceArray;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        WordParser that = (WordParser) o;
+        return Objects.equals(sentenceArray, that.sentenceArray);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(sentenceArray);
+    }
+
+    @Override
+    public String toString() {
+        return "WordParser{" +
+                "sentenceArray=" + sentenceArray +
+                '}';
+    }
 }
