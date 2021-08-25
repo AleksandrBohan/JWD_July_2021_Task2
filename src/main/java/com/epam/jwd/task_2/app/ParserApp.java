@@ -36,6 +36,8 @@ public class ParserApp {
 
         for (int i = 0; i<parser.size(); i++){
             new Functions().reverseWords(parser.get(i));
+            System.out.println();
+            System.out.println();
         }
 
     }
@@ -60,12 +62,16 @@ public class ParserApp {
         List<String>parser = new SentenceParser()
                 .parseSentences("ProgramFile.txt", SentenceParser.getSentenceParser(), parseSentences);
 
-        for (int i = 0; i<parser.size(); i++){
+        for (int i = 0; i<parseSentences.size(); i++){
             new WordParser().sentenceParser(parser.get(i), writeWords);
         }
 
+        writeWords.removeIf(item -> item == null || "".equals(item));
+
 
         for (int i = 0; i < writeWords.size(); i++){
+            //System.out.println(writeWords.get(i));
+
             Functions functions = new Functions();
             System.out.println(functions.formatText12(writeWords.get(i), sizeOfWords));
 

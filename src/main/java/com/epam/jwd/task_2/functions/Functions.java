@@ -49,7 +49,8 @@ public class Functions {
       String sentenceWithoutSpaces = sentence.trim();
       List<String> wordsList = new ArrayList<>();
       new WordParser().sentenceParser(sentenceWithoutSpaces, wordsList);
-      Collections.swap(wordsList, 0, wordsList.size()-3);
+      wordsList.removeIf(item -> item == null || "".equals(item));
+      Collections.swap(wordsList, 0, wordsList.size()-1);
       for (String line : wordsList){
          System.out.println(line);
       }
