@@ -3,40 +3,45 @@ package com.epam.jwd.task_2.functions;
 
 
 import com.epam.jwd.task_2.exceptions.WrongFileName;
-import com.epam.jwd.task_2.parsers.PunctuationMarksParser;
 import com.epam.jwd.task_2.parsers.SentenceParser;
 import com.epam.jwd.task_2.parsers.WordParser;
 
 import java.io.IOException;
 import java.util.*;
-import java.util.stream.Collectors;
 
 public class Functions {
 
-   public void sentenceOrder() throws IOException, WrongFileName {
+   private Map<Integer, String> sentenceOrderMap = new TreeMap<>();
+
+   public Map<Integer, String> sentenceOrder() throws IOException, WrongFileName {
+      int sizeBefore = 0;
+      int sizeAfter = 0;
+
       List<String> sentenceOrderList = new ArrayList<>();
 
       List<String> wordsList = new ArrayList<>();
 
-      Map<Integer, String> sentenceOrderMap = new TreeMap<>();
+
 
       List<String>parser = new SentenceParser()
               .parseSentences("ProgramFile.txt",
                       SentenceParser.getSentenceParser(), sentenceOrderList);
 
-      new PunctuationMarksParser().parseText(sentenceOrderList);
+      //new PunctuationMarksParser().parseText(sentenceOrderList);
 
-      for (int i = 0; i<sentenceOrderList.size(); i++){
-         new WordParser().sentenceParser(sentenceOrderList.get(i).trim(), wordsList);
+      for (int i = 0; i<parser.size(); i++){
+           sizeBefore = wordsList.size();
 
-         sentenceOrderMap.put(wordsList.size(), sentenceOrderList.get(i));
+         new WordParser().sentenceParser(parser.get(i), wordsList);
+         wordsList.removeIf(item -> item == null || "".equals(item));
+           sizeAfter = wordsList.size();
+         int realSize = sizeAfter-sizeBefore;
+
+         sentenceOrderMap.put(realSize, parser.get(i));
+
 
       }
-      Set<Map.Entry<Integer, String>> entries = sentenceOrderMap.entrySet();
-
-      for (Map.Entry<Integer, String> entry : entries){
-         System.out.println("tHIS" + entry.getKey() + "    " +  entry.getValue());
-      }
+      return sentenceOrderMap;
 
    }
 
@@ -52,7 +57,7 @@ public class Functions {
 
    public void alphabetOrder(List <String> sortList){
       Collections.sort(sortList);
-      String letter = sortList.get(0).substring(0, 1);
+      String letter = " Letter".substring(0, 1);
       boolean redline = true;
       for (int i = 0; i < sortList.size(); i++) {
          if(!sortList.get(i).substring(0, 1).equals(letter)){
@@ -96,6 +101,13 @@ public class Functions {
       }
    }
 
+   public Map<Integer, String> getSentenceOrderMap() {
+      return sentenceOrderMap;
+   }
+
+   public void setSentenceOrderMap(Map<Integer, String> sentenceOrderMap) {
+      this.sentenceOrderMap = sentenceOrderMap;
+   }
 }
 
 

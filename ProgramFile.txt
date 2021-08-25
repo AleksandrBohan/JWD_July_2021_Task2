@@ -11,8 +11,10 @@ public static void main (String args) {
  int count;
  String title;
  boolean isAsleep;
-.
-}
+  /
+  /
+  /
+}.
 You can string together variable names with the same type:
 int x, y, z;
 String firstName, LastName;

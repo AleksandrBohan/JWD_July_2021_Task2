@@ -9,11 +9,10 @@ public class PunctuationMarksParser {
     private static final String WORD_PARSER = "[^A-Za-z0-9]|(\\s+)";
 
     public List<String> parseText(List<String> words) {
-        setWords(words);
+
         for (int i = 0; i < words.size(); i++) {
-            if (words.get(i).equals(WORD_PARSER)) {
                 words.remove(i);
-            }
+
         }
         return words;
     }
