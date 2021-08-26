@@ -9,7 +9,12 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.io.IOException;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+import java.util.Objects;
+import java.util.Scanner;
+import java.util.TreeMap;
 
 
 public class ParserApp {
@@ -50,22 +55,25 @@ public class ParserApp {
 
         }
 
-     new Functions().sortMapByValue(sentenceOrderMap);
+             new Functions().sortMapByValue(sentenceOrderMap);
 
-        new WordParser().reversSentence(originalSentence);
-        new SentenceParser().reversText(originalText);
+
+             new WordParser().reversSentence(originalSentence);
+             new SentenceParser().reversText(originalText);
 
     }
 
 
-    public void function5_reverse(String path) {
+    public void reverseWordsInSentence(String path) {
         List<String>parser = new SentenceParser()
                 .parseSentences(path, SentenceParser.getSentenceParser(),
                         parseSentences, originalText);
 
         for (int i = 0; i<parser.size(); i++){
                 new WordParser().sentenceParser(parser.get(i), wordsSentences, originalSentence);
+            System.out.println("--------------------------------");
                 new Functions().reverseWords(parser.get(i));
+            System.out.println("--------------------------------");
         }
 
         try {
@@ -75,7 +83,7 @@ public class ParserApp {
         }
     }
 
-    public void callFunction12(int sizeOfWords, String pathToFile) {
+    public void deleteWordsBySize(int sizeOfWords, String pathToFile) {
         List<String>parser = new SentenceParser()
                 .parseSentences(pathToFile, SentenceParser.getSentenceParser(),
                         parseSentences, originalText);
@@ -87,8 +95,7 @@ public class ParserApp {
         wordsSentences.removeIf(item -> item == null || "".equals(item));
 
         for (int i = 0; i < wordsSentences.size(); i++){
-            System.out.print(new Functions()
-                    .formatText12(wordsSentences.get(i), sizeOfWords));
+            System.out.print(new Functions().formatText(wordsSentences.get(i), sizeOfWords));
 
         }
         try {
@@ -96,24 +103,6 @@ public class ParserApp {
         } catch (IOException e) {
             logger.log(Level.ERROR, "IOException in callFunction12() method");
         }
-
-    }
-
-    List<String> getTextConstructor(String pathToFile) {
-        List<String> parser = new SentenceParser()
-                .parseSentences(pathToFile, SentenceParser.getSentenceParser(),
-                        parseSentences, originalText);
-
-        for (int i = 0; i<parser.size()-1; i++) {
-            new WordParser().sentenceParser(parser.get(i), wordsSentences,
-                    originalSentence);
-        }
-        wordsSentences.removeIf(item -> item == null || "".equals(item));
-        for (int i = 0; i < wordsSentences.size()-1; i++){
-            System.out.println(wordsSentences.get(i));
-        }
-
-            return wordsSentences;
 
     }
 
@@ -130,36 +119,32 @@ public class ParserApp {
                 " a consonant from the text" + "\n" +
                 "2 - Display all sentences of a given text in ascending order" +
                 " of the number of words in each of them " + "\n" + "3 - In each sentence of the text, " +
-                "change the first word with the last without changing the length of the sentence" + "\n" +
-                "0 - exit from this app");
+                "change the first word with the last without changing the length of the sentence" + "\n");
 
-        int choiseNumber = scanner.nextInt();
+        int chooseNumber = scanner.nextInt();
 
-        if (choiseNumber == 0){
-            System.exit(0);
+        if (chooseNumber == 1) {
+            deleteWordsBySize(4, pathToFile);
         }
-        else if (choiseNumber == 1) {
-            callFunction12(4, pathToFile);
-        }
-        else if (choiseNumber == 2) {
+        else if (chooseNumber == 2) {
             sentenceOrder("ProgramFile.txt");
         }
-        else if (choiseNumber == 3) {
-            function5_reverse(pathToFile);
+        else if (chooseNumber == 3) {
+            reverseWordsInSentence(pathToFile);
         }
         else {
             try {
                 throw new WrongAnswerException("There was input other number here!" +
-                        "(This number isn't valid)", choiseNumber);
+                        "(This number isn't valid)", chooseNumber);
             } catch (WrongAnswerException e) {
-                logger.error("Input isn't valid! Personal exception");
+                logger.log(Level.ERROR, "Input isn't valid! Personal exception", e);
             }
         }
 
     }
 
 
-    public static void main(String[] args) throws IOException, WrongAnswerException {
+    public static void main(String[] args) {
         ParserApp parserApp = new ParserApp();
         parserApp.getFunction("ProgramFile.txt");
 
@@ -198,6 +183,18 @@ public class ParserApp {
         this.originalText = originalText;
     }
 
+    public Map<Integer, String> getSentenceOrderMap() {
+        return sentenceOrderMap;
+    }
+
+    public void setSentenceOrderMap(Map<Integer, String> sentenceOrderMap) {
+        this.sentenceOrderMap = sentenceOrderMap;
+    }
+
+    public static Logger getLogger() {
+        return logger;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -206,12 +203,13 @@ public class ParserApp {
         return Objects.equals(wordsSentences, parserApp.wordsSentences) &&
                 Objects.equals(parseSentences, parserApp.parseSentences) &&
                 Objects.equals(originalSentence, parserApp.originalSentence) &&
-                Objects.equals(originalText, parserApp.originalText);
+                Objects.equals(originalText, parserApp.originalText) &&
+                Objects.equals(sentenceOrderMap, parserApp.sentenceOrderMap);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(wordsSentences, parseSentences, originalSentence, originalText);
+        return Objects.hash(wordsSentences, parseSentences, originalSentence, originalText, sentenceOrderMap);
     }
 
     @Override
@@ -221,6 +219,7 @@ public class ParserApp {
                 ", parseSentences=" + parseSentences +
                 ", originalSentence=" + originalSentence +
                 ", originalText=" + originalText +
+                ", sentenceOrderMap=" + sentenceOrderMap +
                 '}';
     }
 }

@@ -1,6 +1,5 @@
 package com.epam.jwd.task_2.reader;
 
-
 import org.apache.logging.log4j.Level;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -18,8 +17,7 @@ public class TextReader {
 
     private static final Logger logger = LogManager.getLogger(TextReader.class);
 
-    public String readFile(String path, Charset encoding)
-           {
+    public String readFile(String path, Charset encoding) {
         setPathToFile(path);
         setEncoding(encoding);
                byte[] encoded = new byte[0];

@@ -20,21 +20,20 @@ public class SentenceParser {
 
     public List<String> parseSentences(String path, String generalParser, List<String> sentenceList,
                                        List<String> textList) {
-                    setText(textList);
+            setText(textList);
 
-                    Pattern generalPattern = Pattern.compile(generalParser);
+            Pattern generalPattern = Pattern.compile(generalParser);
 
-                    Matcher generalMatcher = generalPattern.matcher(new TextReader().readFile(path, StandardCharsets.UTF_8));
-
+            Matcher generalMatcher = generalPattern.matcher(new TextReader().readFile(path, StandardCharsets.UTF_8));
 
                         while (generalMatcher.find()) {
                             new Text().createText(generalMatcher.group(1), sentenceList);
                             new Text().createText(generalMatcher.group(0), textList);
                          //   System.out.println("Found sentence : " + generalMatcher.group(1));
                          // System.out.println("End of sentence!");  //TODO
-        }
+                        }
 
-        return sentenceList;
+               return sentenceList;
     }
 
 
@@ -48,6 +47,14 @@ public class SentenceParser {
 
     public static String getSentenceParser() {
         return SENTENCE_PARSER;
+    }
+
+    public List<String> getText() {
+        return text;
+    }
+
+    public void setText(List<String> text) {
+        this.text = text;
     }
 
     @Override
@@ -70,11 +77,4 @@ public class SentenceParser {
                 '}';
     }
 
-    public List<String> getText() {
-        return text;
-    }
-
-    public void setText(List<String> text) {
-        this.text = text;
-    }
 }

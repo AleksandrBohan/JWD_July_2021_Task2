@@ -1,10 +1,15 @@
 package com.epam.jwd.task_2.functions;
 
-import com.epam.jwd.task_2.parsers.SentenceParser;
 import com.epam.jwd.task_2.parsers.WordParser;
 
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Objects;
 import java.util.stream.Stream;
 
 
@@ -17,8 +22,6 @@ public class Functions {
    private List<String> originalText = new ArrayList<>();
 
    private List<String> originalSentence = new ArrayList<>();
-
-
 
    public  <K, V extends Comparable<? super K>>
    Map<Integer, String> sortMapByValue(Map<Integer, String> map) {
@@ -33,6 +36,7 @@ public class Functions {
               .stream()
               .forEach(System.out::println);
 
+
       return orderMap;
    }
 
@@ -44,13 +48,14 @@ public class Functions {
       wordsList.removeIf(item -> item == null || "".equals(item));
 
       Collections.swap(wordsList, 0, wordsList.size()-1);
+
       for (String line : wordsList){
-         System.out.print(" " + line + " ");
+         System.out.print("  " + line + "  ");
       }
    }
 
 
-   public String formatText12(String incomingText, int sizeOfWords) {
+   public String formatText(String incomingText, int sizeOfWords) {
       StringBuilder sb = new StringBuilder();
 
       if ((incomingText.length() / sizeOfWords != 0)

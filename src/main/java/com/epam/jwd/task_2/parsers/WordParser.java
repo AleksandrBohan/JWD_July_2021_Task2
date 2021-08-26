@@ -2,7 +2,6 @@ package com.epam.jwd.task_2.parsers;
 
 import com.epam.jwd.task_2.TextObjects.Sentence;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
