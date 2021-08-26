@@ -1,7 +1,9 @@
 package com.epam.jwd.task_2.writer;
 
+import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.List;
 import java.util.Objects;
 
 
@@ -9,18 +11,45 @@ public class TextWriter {
 
     private String lineForWriting;
 
-    public void writeFile(String lineForWriting) throws IOException {
+    private List<String> collectionForWriting;
 
-        try (FileWriter writer = new FileWriter("ProgramFile.txt",
-                false)) {
-            writer.append(lineForWriting);
-            writer.append("\n");
+    public String writeStringInFile(String lineForWriting, String pathToFile) throws IOException {
+            setLineForWriting(lineForWriting);
 
-            System.out.println("Found: " + lineForWriting);
+        //File clearFile = new File(pathToFile);
+
+        try (FileWriter writer = new FileWriter(pathToFile, false)) {
+
+                writer.append(lineForWriting);
+                writer.append("\n");
+
+                //System.out.println("Found: " + lineForWriting);
+
+        }
+     return getLineForWriting();
+
+    }
+
+    public String writeCollectionInFile(List<String> collectionForWriting, String pathToFile) {
+            setCollectionForWriting(collectionForWriting);
+            try (FileWriter writer = new FileWriter(pathToFile,
+                    false)) {
+                for (String line : collectionForWriting){
+                        writer.append(line);
+                        writer.append("\n");
+
+
+                //System.out.println("Found: " + lineForWriting);
+
+                }
+            }catch (IOException e) {
+                e.printStackTrace();
+            }
+        return getLineForWriting();
         }
 
 
-    }
+
 
     public String getLineForWriting() {
         return lineForWriting;
@@ -46,7 +75,15 @@ public class TextWriter {
     @Override
     public String toString() {
         return "TextWriter{" +
-                "lineForWriting='" + lineForWriting + '\'' +
+                "line for writing = '" + lineForWriting + '\'' +
                 '}';
+    }
+
+    public List<String> getCollectionForWriting() {
+        return collectionForWriting;
+    }
+
+    public void setCollectionForWriting(List<String> collectionForWriting) {
+        this.collectionForWriting = collectionForWriting;
     }
 }

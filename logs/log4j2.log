@@ -1,0 +1,25 @@
+2021-08-26 00:58:56 ERROR c.e.j.t.a.ParserApp [main] Input isn't valid! Personal exception
+2021-08-26 00:59:21 ERROR c.e.j.t.a.ParserApp [main] Input isn't valid! Personal exception
+2021-08-26 02:05:31 ERROR c.e.j.t.a.ParserApp [main] IOException in getRollBack() method
+2021-08-26 02:05:49 ERROR c.e.j.t.a.ParserApp [main] IOException in getRollBack() method
+2021-08-26 02:06:13 ERROR c.e.j.t.a.ParserApp [main] IOException in getRollBack() method
+2021-08-26 18:28:58 ERROR c.e.j.t.a.ParserApp [main] IOException in getRollBack() method
+2021-08-26 18:55:24 ERROR c.e.j.t.a.ParserApp [main] IOException in getRollBack() method
+2021-08-26 18:57:28 ERROR c.e.j.t.r.TextReader [main] IOException in readFile() method!
+java.nio.file.NoSuchFileException: asdf
+	at sun.nio.fs.WindowsException.translateToIOException(WindowsException.java:85) ~[?:?]
+	at sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:103) ~[?:?]
+	at sun.nio.fs.WindowsException.rethrowAsIOException(WindowsException.java:108) ~[?:?]
+	at sun.nio.fs.WindowsFileSystemProvider.newByteChannel(WindowsFileSystemProvider.java:235) ~[?:?]
+	at java.nio.file.Files.newByteChannel(Files.java:371) ~[?:?]
+	at java.nio.file.Files.newByteChannel(Files.java:422) ~[?:?]
+	at java.nio.file.Files.readAllBytes(Files.java:3206) ~[?:?]
+	at com.epam.jwd.task_2.reader.TextReader.readFile(TextReader.java:27) [classes/:?]
+	at com.epam.jwd.task_2.parsers.SentenceParser.parseSentences(SentenceParser.java:34) [classes/:?]
+	at com.epam.jwd.task_2.app.ParserApp.callFunction12(ParserApp.java:69) [classes/:?]
+	at com.epam.jwd.task_2.app.ParserApp.getFunction(ParserApp.java:135) [classes/:?]
+	at com.epam.jwd.task_2.app.ParserApp.main(ParserApp.java:157) [classes/:?]
+2021-08-26 18:57:28 ERROR c.e.j.t.a.ParserApp [main] IOException in getRollBack() method
+2021-08-26 18:59:08 ERROR c.e.j.t.a.ParserApp [main] IOException in getRollBack() method
+2021-08-26 19:00:41 ERROR c.e.j.t.a.ParserApp [main] IOException in getRollBack() method
+2021-08-26 19:09:18 ERROR c.e.j.t.a.ParserApp [main] IOException in getRollBack() method

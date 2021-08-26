@@ -1,34 +1,34 @@
-Declaring Variables
-To use any variable in a Java program, you must first declare it. Variable declarations consist of
-a type and a variable name:
-int myAge;
-String myName;
-boolean isTired;
-Variable definitions can go anywhere in a method definition (that is, anywhere a regular Java
-statement can go), although they are most commonly declared at the beginning of the definition
-before they are used:
-public static void main (String args) {
- int count;
- String title;
- boolean isAsleep;
-  /
-  /
-  /
-}.
-You can string together variable names with the same type:
-int x, y, z;
-String firstName, LastName;
-You can also give each variable an initial value when you declare it:
-int myAge, mySize, numShoes = 28;
-String myName = Laura;
-boolean isTired = true;
-int a = 4, b = 5, c = 6;
-If there are multiple variables on the same line with only one initializer (as in the first of the
-previous examples), the initial value applies to only the last variable in a declaration. You can also
-group individual variables and initializers on the same line using commas, as with the last
-example, above.
-Local variables must be given values before they can be used (your Java program will not compile
-if you try to use an unassigned local variable). For this reason, its a good idea always to give local
-variables initial values. Instance and class variable definitions do not have this restriction (their
-initial value depends on the type of the variable: null for instances of classes, 0 for numeric
-variables, 0 for characters, and false for booleans).
+ Declaring Variables
+ To use any variable in a Java program, you must first declare it. Variable declarations consist of
+ a type and a variable name:
+ int myAge;
+ String myName;
+ boolean isTired;
+ Variable definitions can go anywhere in a method definition (that is, anywhere a regular Java
+ statement can go), although they are most commonly declared at the beginning of the definition
+ before they are used:
+ public static void main (String args) {
+  int count;
+  String title;
+  boolean isAsleep;
+   /
+   /
+   /
+ }.
+ You can string together variable names with the same type:
+ int x, y, z;
+ String firstName, LastName;
+ You can also give each variable an initial value when you declare it:
+ int myAge, mySize, numShoes = 28;
+ String myName = Laura;
+ boolean isTired = true;
+ int a = 4, b = 5, c = 6;
+ If there are multiple variables on the same line with only one initializer (as in the first of the
+ previous examples), the initial value applies to only the last variable in a declaration. You can also
+ group individual variables and initializers on the same line using commas, as with the last
+ example, above.
+ Local variables must be given values before they can be used (your Java program will not compile
+ if you try to use an unassigned local variable). For this reason, its a good idea always to give local
+ variables initial values. Instance and class variable definitions do not have this restriction (their
+ initial value depends on the type of the variable: null for instances of classes, 0 for numeric
+ variables, 0 for characters, and false for booleans).

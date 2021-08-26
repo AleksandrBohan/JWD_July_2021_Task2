@@ -10,11 +10,6 @@ public class Sentence {
 
     private List<String> words = new ArrayList<>();
 
-    public Sentence(String word, List<String> words) {
-        setWord(word);
-        setWords(words);
-    }
-
     public void createSentence(String word, List<String> words){
         setWords(words);
         setWord(word);
