@@ -32,7 +32,6 @@ public class WordParser {
 
         }
 
-
         return writeWords;
     }
 

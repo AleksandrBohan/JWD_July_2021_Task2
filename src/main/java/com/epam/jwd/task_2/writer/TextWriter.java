@@ -16,8 +16,6 @@ public class TextWriter {
     public String writeStringInFile(String lineForWriting, String pathToFile) throws IOException {
             setLineForWriting(lineForWriting);
 
-        //File clearFile = new File(pathToFile);
-
         try (FileWriter writer = new FileWriter(pathToFile, false)) {
 
                 writer.append(lineForWriting);

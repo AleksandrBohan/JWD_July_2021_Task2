@@ -9,14 +9,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.Objects;
-import java.util.Scanner;
-import java.util.stream.Stream;
+import java.util.*;
 
 
 public class ParserApp {
@@ -29,45 +22,51 @@ public class ParserApp {
 
    private List<String> originalText = new ArrayList<>();
 
+    private Map<Integer, String> sentenceOrderMap = new TreeMap<>();
+
    private static final Logger logger = LogManager.getLogger(ParserApp.class);
 
-    public  <K, V extends Comparable<? super K>>
-    Map<Integer, String> sortMapByValue(Map<Integer, String> map) {
+    public void sentenceOrder(String pathToFile) {
+        int sizeBefore;
+        int sizeAfter;
 
-        Map<Integer,String> orderMap = new LinkedHashMap<>();
-        Stream<Map.Entry<Integer, String>> st = map.entrySet().stream();
+        List<String>parser = new SentenceParser()
+                .parseSentences(pathToFile,
+                        SentenceParser.getSentenceParser(),
+                        parseSentences, originalText);
 
-        st.sorted(Comparator.comparing(e -> e.getKey()))
-                .forEach(e ->orderMap.put(e.getKey(),e.getValue()));
+        for (int i = 0; i<parser.size(); i++){
+            sizeBefore = wordsSentences.size();
 
-        orderMap.entrySet()
-                .stream()
-                .forEach(System.out::println);
+            new WordParser().sentenceParser(parser.get(i), wordsSentences, originalSentence);
 
-        try {
-            getRollBack();
-        } catch (IOException e) {
-            logger.log(Level.ERROR, "IOException sortMapByValue() method in function5_reverse() method");
+            wordsSentences.removeIf(item -> item == null || "".equals(item));
+
+            sizeAfter = wordsSentences.size();
+
+            int realSize = sizeAfter - sizeBefore;
+
+            sentenceOrderMap.put(realSize, parser.get(i));
+
         }
 
-        return orderMap;
+     new Functions().sortMapByValue(sentenceOrderMap);
+
+        new WordParser().reversSentence(originalSentence);
+        new SentenceParser().reversText(originalText);
+
     }
 
 
-    public void function5_reverse() {
+    public void function5_reverse(String path) {
         List<String>parser = new SentenceParser()
-                .parseSentences("ProgramFile.txt", SentenceParser.getSentenceParser(),
+                .parseSentences(path, SentenceParser.getSentenceParser(),
                         parseSentences, originalText);
 
         for (int i = 0; i<parser.size(); i++){
                 new WordParser().sentenceParser(parser.get(i), wordsSentences, originalSentence);
                 new Functions().reverseWords(parser.get(i));
-
-                //logger.log(Level.ERROR, "IOException in function5_reverse() method", e);
-
-
         }
-
 
         try {
             getRollBack();
@@ -76,9 +75,9 @@ public class ParserApp {
         }
     }
 
-    public void callFunction12(int sizeOfWords) {
+    public void callFunction12(int sizeOfWords, String pathToFile) {
         List<String>parser = new SentenceParser()
-                .parseSentences("ProgramFile.txt", SentenceParser.getSentenceParser(),
+                .parseSentences(pathToFile, SentenceParser.getSentenceParser(),
                         parseSentences, originalText);
 
         for (int i = 0; i<parseSentences.size(); i++){
@@ -100,9 +99,9 @@ public class ParserApp {
 
     }
 
-    List<String> getTextConstructor() {
+    List<String> getTextConstructor(String pathToFile) {
         List<String> parser = new SentenceParser()
-                .parseSentences("ProgramFile.txt", SentenceParser.getSentenceParser(),
+                .parseSentences(pathToFile, SentenceParser.getSentenceParser(),
                         parseSentences, originalText);
 
         for (int i = 0; i<parser.size()-1; i++) {
@@ -123,7 +122,7 @@ public class ParserApp {
         new SentenceParser().reversText(originalText);
     }
 
-    void getFunction() {
+    void getFunction(String pathToFile) {
         Scanner scanner = new Scanner(System.in);
 
         System.out.println("\n\n" + "What function do you want to do?..." + "\n\n"
@@ -140,17 +139,13 @@ public class ParserApp {
             System.exit(0);
         }
         else if (choiseNumber == 1) {
-            callFunction12(4);
+            callFunction12(4, pathToFile);
         }
         else if (choiseNumber == 2) {
-
-                sortMapByValue(new Functions().sentenceOrder());
-
-
-
+            sentenceOrder("ProgramFile.txt");
         }
         else if (choiseNumber == 3) {
-            function5_reverse();
+            function5_reverse(pathToFile);
         }
         else {
             try {
@@ -160,13 +155,13 @@ public class ParserApp {
                 logger.error("Input isn't valid! Personal exception");
             }
         }
-        getFunction();
+
     }
 
 
     public static void main(String[] args) throws IOException, WrongAnswerException {
         ParserApp parserApp = new ParserApp();
-        parserApp.getFunction();
+        parserApp.getFunction("ProgramFile.txt");
 
     }
 

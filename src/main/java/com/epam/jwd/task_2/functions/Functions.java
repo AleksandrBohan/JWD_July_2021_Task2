@@ -4,12 +4,8 @@ import com.epam.jwd.task_2.parsers.SentenceParser;
 import com.epam.jwd.task_2.parsers.WordParser;
 
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Map;
-import java.util.Objects;
-import java.util.TreeMap;
+import java.util.*;
+import java.util.stream.Stream;
 
 
 public class Functions {
@@ -22,35 +18,22 @@ public class Functions {
 
    private List<String> originalSentence = new ArrayList<>();
 
-   private Map<Integer, String> sentenceOrderMap = new TreeMap<>();
 
 
-   public Map<Integer, String> sentenceOrder() {
-      int sizeBefore;
-      int sizeAfter;
+   public  <K, V extends Comparable<? super K>>
+   Map<Integer, String> sortMapByValue(Map<Integer, String> map) {
 
-      List<String>parser = new SentenceParser()
-              .parseSentences("ProgramFile.txt",
-                      SentenceParser.getSentenceParser(),
-                      sentenceOrderList, originalText);
+      Map<Integer,String> orderMap = new LinkedHashMap<>();
+      Stream<Map.Entry<Integer, String>> st = map.entrySet().stream();
 
-      for (int i = 0; i<parser.size(); i++){
-           sizeBefore = wordsList.size();
+      st.sorted(Comparator.comparing(e -> e.getKey()))
+              .forEach(e ->orderMap.put(e.getKey(),e.getValue()));
 
-         new WordParser().sentenceParser(parser.get(i), wordsList, originalSentence);
+      orderMap.entrySet()
+              .stream()
+              .forEach(System.out::println);
 
-         wordsList.removeIf(item -> item == null || "".equals(item));
-
-           sizeAfter = wordsList.size();
-
-         int realSize = sizeAfter - sizeBefore;
-
-         sentenceOrderMap.put(realSize, parser.get(i));
-
-      }
-
-      return sentenceOrderMap;
-
+      return orderMap;
    }
 
    public void reverseWords(String sentence) {
@@ -98,14 +81,6 @@ public class Functions {
       }
    }
 
-   public Map<Integer, String> getSentenceOrderMap() {
-      return sentenceOrderMap;
-   }
-
-   public void setSentenceOrderMap(Map<Integer, String> sentenceOrderMap) {
-      this.sentenceOrderMap = sentenceOrderMap;
-   }
-
    public List<String> getSentenceOrderList() {
       return sentenceOrderList;
    }
@@ -146,13 +121,13 @@ public class Functions {
       return Objects.equals(sentenceOrderList, functions.sentenceOrderList) &&
               Objects.equals(wordsList, functions.wordsList) &&
               Objects.equals(originalText, functions.originalText) &&
-              Objects.equals(originalSentence, functions.originalSentence) &&
-              Objects.equals(sentenceOrderMap, functions.sentenceOrderMap);
+              Objects.equals(originalSentence, functions.originalSentence);
+
    }
 
    @Override
    public int hashCode() {
-      return Objects.hash(sentenceOrderList, wordsList, originalText, originalSentence, sentenceOrderMap);
+      return Objects.hash(sentenceOrderList, wordsList, originalText, originalSentence);
    }
 
    @Override
@@ -162,7 +137,6 @@ public class Functions {
               ", wordsList=" + wordsList +
               ", originalText=" + originalText +
               ", originalSentence=" + originalSentence +
-              ", sentenceOrderMap=" + sentenceOrderMap +
               '}';
    }
 }
