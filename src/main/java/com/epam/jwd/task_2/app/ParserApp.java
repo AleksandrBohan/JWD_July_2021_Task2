@@ -54,11 +54,11 @@ public class ParserApp {
                         parseSentences, originalText);
 
         for (int i = 0; i<parser.size(); i++){
-            try {
+
                 new Functions().reverseWords(parser.get(i));
-            } catch (IOException e) {
-                logger.log(Level.ERROR, "IOException in function5_reverse() method", e);
-            }
+
+                //logger.log(Level.ERROR, "IOException in function5_reverse() method", e);
+
 
         }
         try {
@@ -113,7 +113,7 @@ public class ParserApp {
     void getRollBack() throws IOException {
         new WordParser().reversSentence(originalSentence);
         new SentenceParser().reversText(originalText);
-        logger.error("IOException in getRollBack() method");
+        //logger.error("IOException in getRollBack() method");
     }
 
     void getFunction() {
@@ -136,11 +136,11 @@ public class ParserApp {
             callFunction12(4);
         }
         else if (choiseNumber == 2) {
-            try {
+
                 sortMapByValue(new Functions().sentenceOrder());
-            } catch (IOException e) {
-                logger.log(Level.ERROR, "IOException in getFunction() method", e);
-            }
+
+
+
         }
         else if (choiseNumber == 3) {
             function5_reverse();

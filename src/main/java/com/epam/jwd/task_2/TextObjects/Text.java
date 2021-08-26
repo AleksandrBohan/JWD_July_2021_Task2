@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-public class Text implements Composite {
+public class Text {
 
     private String sentense;
 
@@ -37,13 +37,7 @@ public class Text implements Composite {
         sentences.add(sentence);
     }
 
-    @Override
-    public void getContent() {
-        setSentences(sentences);
-        for (String sentence : sentences){
-            System.out.println(sentence);
-        }
-    }
+
 
     @Override
     public boolean equals(Object o) {

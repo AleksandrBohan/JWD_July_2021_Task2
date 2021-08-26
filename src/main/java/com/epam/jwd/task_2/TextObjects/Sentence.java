@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-public class Sentence implements Composite {
+public class Sentence {
 
     private String word;
 
@@ -31,13 +31,7 @@ public class Sentence implements Composite {
     }
 
 
-    @Override
-    public void getContent() {
-        setWords(words);
-        for (String word : words){
-            System.out.println(word);
-        }
-    }
+
 
     public String getWord() {
         return word;
