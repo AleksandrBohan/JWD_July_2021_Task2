@@ -8,6 +8,7 @@ import java.io.IOException;
 import java.nio.charset.Charset;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.Objects;
 
 public class TextReader {
 
@@ -16,6 +17,10 @@ public class TextReader {
     private Charset encoding;
 
     private static final Logger logger = LogManager.getLogger(TextReader.class);
+
+    public static Logger getLogger() {
+        return logger;
+    }
 
     public String readFile(String path, Charset encoding) {
         setPathToFile(path);
@@ -43,6 +48,28 @@ public class TextReader {
 
     public void setEncoding(Charset encoding) {
         this.encoding = encoding;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        TextReader that = (TextReader) o;
+        return Objects.equals(pathToFile, that.pathToFile) &&
+                Objects.equals(encoding, that.encoding);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(pathToFile, encoding);
+    }
+
+    @Override
+    public String toString() {
+        return "TextReader{" +
+                "pathToFile='" + pathToFile + '\'' +
+                ", encoding=" + encoding +
+                '}';
     }
 }
 
