@@ -25,44 +25,16 @@ public class WordParser {
         Matcher generalMatcher = generalPattern.matcher(sentenceLine);
 
         while (generalMatcher.find()) {
-            // writer.append(generalMatcher.group(1));
-            // writer.append("\n");
             new Sentence()
                     .createSentence(generalMatcher.group(1), writeWords);
             new Sentence()
                     .createSentence(generalMatcher.group(0), originalSentence);
-            // System.out.println("Found word: " + generalMatcher.group(0));
 
         }
 
 
         return writeWords;
     }
-
-
-   /*public List<String> getWordsFromSentences(List<String> wordsList) throws IOException, WrongFileName {
-       List<String> parseSentences = new ArrayList<>();
-       List<String>parser = new SentenceParser()
-               .parseSentences("ProgramFile.txt", SentenceParser.getSentenceParser(), parseSentences);
-       for (int i = 0; i<parser.size(); i++){
-           new WordParser().sentenceParser(parser.get(i), wordsList);
-       }
-       return wordsList;
-   }*///TODO
-
-    /*public List<String> getSentenceWords(List<String> wordsList) throws IOException, WrongFileName {
-        List<String> parseSentences = new ArrayList<>();
-        this.words = wordsList;
-        List<String>parser = new SentenceParser()
-                .parseSentences("ProgramFile.txt", SentenceParser.getSentenceParser(),
-                        parseSentences);
-        for (int i = 0; i<parser.size(); i++){
-            new WordParser().sentenceParser(parser.get(i), wordsList);
-        }
-        return parser;
-    }*/
-
-
 
     public void reversSentence(List<String> sentenceList) {
         System.out.println("\n" + "Roll back these sentences: " + "\n");
@@ -71,13 +43,9 @@ public class WordParser {
         }
     }
 
-
     public static String getWordParser() {
         return WORD_PARSER;
     }
-
-
-
 
     public List<String> getSentenceArray() {
         return sentenceArray;

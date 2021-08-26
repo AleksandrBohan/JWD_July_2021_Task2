@@ -9,7 +9,13 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.io.IOException;
-import java.util.*;
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Objects;
+import java.util.Scanner;
 import java.util.stream.Stream;
 
 
@@ -54,13 +60,15 @@ public class ParserApp {
                         parseSentences, originalText);
 
         for (int i = 0; i<parser.size(); i++){
-
+                new WordParser().sentenceParser(parser.get(i), wordsSentences, originalSentence);
                 new Functions().reverseWords(parser.get(i));
 
                 //logger.log(Level.ERROR, "IOException in function5_reverse() method", e);
 
 
         }
+
+
         try {
             getRollBack();
         } catch (IOException e) {
@@ -113,7 +121,6 @@ public class ParserApp {
     void getRollBack() throws IOException {
         new WordParser().reversSentence(originalSentence);
         new SentenceParser().reversText(originalText);
-        //logger.error("IOException in getRollBack() method");
     }
 
     void getFunction() {

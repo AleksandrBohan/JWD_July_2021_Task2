@@ -20,13 +20,9 @@ public class Sentence {
         this.words = words;
     }
 
-
     public List<String> getWords() {
         return words;
     }
-
-
-
 
     public String getWord() {
         return word;

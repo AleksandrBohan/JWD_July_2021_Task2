@@ -20,20 +20,18 @@ public class SentenceParser {
 
     public List<String> parseSentences(String path, String generalParser, List<String> sentenceList,
                                        List<String> textList) {
-        setText(textList);
+                    setText(textList);
 
-        Pattern generalPattern = Pattern.compile(generalParser);
+                    Pattern generalPattern = Pattern.compile(generalParser);
 
-        Matcher generalMatcher = generalPattern.matcher(new TextReader().readFile(path, StandardCharsets.UTF_8));
+                    Matcher generalMatcher = generalPattern.matcher(new TextReader().readFile(path, StandardCharsets.UTF_8));
 
 
-        while (generalMatcher.find()) {
-            //writer.append(generalMatcher.group(1));
-            // writer.append("\n");
-            new Text().createText(generalMatcher.group(1), sentenceList);
-            new Text().createText(generalMatcher.group(0), textList);
-            //   System.out.println("Found sentence : " + generalMatcher.group(1));
-            // System.out.println("End of sentence!");  //TODO
+                        while (generalMatcher.find()) {
+                            new Text().createText(generalMatcher.group(1), sentenceList);
+                            new Text().createText(generalMatcher.group(0), textList);
+                         //   System.out.println("Found sentence : " + generalMatcher.group(1));
+                         // System.out.println("End of sentence!");  //TODO
         }
 
         return sentenceList;

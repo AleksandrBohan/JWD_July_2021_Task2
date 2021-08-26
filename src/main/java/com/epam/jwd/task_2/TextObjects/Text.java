@@ -10,11 +10,6 @@ public class Text {
 
     List<String> sentences = new ArrayList<>();
 
-    public Text(String sentense, List<String> sentences) {
-        setSentence(sentense);
-        setSentences(sentences);
-    }
-
     public String getSentense() {
         return sentense;
     }
