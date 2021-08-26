@@ -28,7 +28,8 @@ public class WordParser {
                     .createSentence(generalMatcher.group(1), writeWords);
             new Sentence()
                     .createSentence(generalMatcher.group(0), originalSentence);
-
+            System.out.println("Found word : " + generalMatcher.group(1));
+            System.out.println("End of word!");
         }
 
         return writeWords;

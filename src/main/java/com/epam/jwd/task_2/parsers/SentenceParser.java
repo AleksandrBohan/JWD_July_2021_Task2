@@ -29,8 +29,8 @@ public class SentenceParser {
                         while (generalMatcher.find()) {
                             new Text().createText(generalMatcher.group(1), sentenceList);
                             new Text().createText(generalMatcher.group(0), textList);
-                         //   System.out.println("Found sentence : " + generalMatcher.group(1));
-                         // System.out.println("End of sentence!");  //TODO
+                            System.out.println("Found sentence : " + generalMatcher.group(1));
+                            System.out.println("End of sentence!");
                         }
 
                return sentenceList;
