@@ -10,11 +10,6 @@ public class Text implements Composite {
 
     List<String> sentences = new ArrayList<>();
 
-    public Text(String sentense, List<String> sentences) {
-        setSentence(sentense);
-        setSentences(sentences);
-    }
-
     public String getSentense() {
         return sentense;
     }
@@ -43,6 +38,7 @@ public class Text implements Composite {
         for (String sentence : sentences){
             System.out.println(sentence);
         }
+
     }
 
     @Override
@@ -61,6 +57,7 @@ public class Text implements Composite {
 
     @Override
     public String toString() {
+
         return "Text{" +
                 "sentense='" + sentense + '\'' +
                 ", sentences=" + sentences +

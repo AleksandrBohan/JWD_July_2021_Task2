@@ -26,7 +26,7 @@ public class ParserApp {
    private static final Logger logger = LogManager.getLogger(ParserApp.class);
 
     public  <K, V extends Comparable<? super K>>
-    Map<Integer, String> sortMapByValue(Map<Integer, String> map) {
+    Map<Integer, String> sortMapByValue(Map<Integer, String> map, String pathToFile) {
 
         Map<Integer,String> orderMap = new LinkedHashMap<>();
         Stream<Map.Entry<Integer, String>> st = map.entrySet().stream();
@@ -38,39 +38,29 @@ public class ParserApp {
                 .stream()
                 .forEach(System.out::println);
 
-        try {
-            getRollBack();
-        } catch (IOException e) {
-            logger.log(Level.ERROR, "IOException sortMapByValue() method in function5_reverse() method");
-        }
+            getRollBack(pathToFile);
+
 
         return orderMap;
     }
 
 
-    public void function5_reverse() {
+    public void function5_reverse(String pathToFile) {
         List<String>parser = new SentenceParser()
-                .parseSentences("ProgramFile.txt", SentenceParser.getSentenceParser(),
+                .parseSentences(pathToFile, SentenceParser.getSentenceParser(),
                         parseSentences, originalText);
 
         for (int i = 0; i<parser.size(); i++){
-            try {
                 new Functions().reverseWords(parser.get(i));
-            } catch (IOException e) {
-                logger.log(Level.ERROR, "IOException in function5_reverse() method", e);
-            }
 
         }
-        try {
-            getRollBack();
-        } catch (IOException e) {
-            logger.log(Level.ERROR, "IOException getRollBack() method in function5_reverse() method");
-        }
+            getRollBack(pathToFile);
+
     }
 
-    public void callFunction12(int sizeOfWords) {
+    public void callFunction12(int sizeOfWords, String pathToFile) {
         List<String>parser = new SentenceParser()
-                .parseSentences("ProgramFile.txt", SentenceParser.getSentenceParser(),
+                .parseSentences(pathToFile, SentenceParser.getSentenceParser(),
                         parseSentences, originalText);
 
         for (int i = 0; i<parseSentences.size(); i++){
@@ -80,21 +70,17 @@ public class ParserApp {
         wordsSentences.removeIf(item -> item == null || "".equals(item));
 
         for (int i = 0; i < wordsSentences.size(); i++){
-            System.out.print(new Functions()
-                    .formatText12(wordsSentences.get(i), sizeOfWords));
+            new Functions()
+                    .formatText12(wordsSentences.get(i), sizeOfWords);
+        }
+            getRollBack(pathToFile);
 
-        }
-        try {
-            getRollBack();
-        } catch (IOException e) {
-            logger.log(Level.ERROR, "IOException in callFunction12() method");
-        }
 
     }
 
-    List<String> getTextConstructor() {
+    List<String> getTextConstructor(String pathToFile) {
         List<String> parser = new SentenceParser()
-                .parseSentences("ProgramFile.txt", SentenceParser.getSentenceParser(),
+                .parseSentences(pathToFile, SentenceParser.getSentenceParser(),
                         parseSentences, originalText);
 
         for (int i = 0; i<parser.size()-1; i++) {
@@ -110,15 +96,18 @@ public class ParserApp {
 
     }
 
-    void getRollBack() throws IOException {
-        new WordParser().reversSentence(originalSentence);
-        new SentenceParser().reversText(originalText);
-        logger.error("IOException in getRollBack() method");
+    void getRollBack(String pathToFile) {
+            new WordParser().reversSentence(originalSentence);
+            new SentenceParser().reversText(originalText);
+
     }
 
     void getFunction() {
-        Scanner scanner = new Scanner(System.in);
+        Scanner pathScanner = new Scanner(System.in);
+        System.out.println("Input path to file: ");
+        String fileName = pathScanner.next();
 
+        Scanner scanner = new Scanner(System.in);
         System.out.println("\n\n" + "What function do you want to do?..." + "\n\n"
                  + "1 - Remove all words of a given length starting with" +
                 " a consonant from the text" + "\n" +
@@ -133,17 +122,13 @@ public class ParserApp {
             System.exit(0);
         }
         else if (choiseNumber == 1) {
-            callFunction12(4);
+            callFunction12(4, fileName);
         }
         else if (choiseNumber == 2) {
-            try {
-                sortMapByValue(new Functions().sentenceOrder());
-            } catch (IOException e) {
-                logger.log(Level.ERROR, "IOException in getFunction() method", e);
-            }
+                sortMapByValue(new Functions().sentenceOrder(), fileName);
         }
         else if (choiseNumber == 3) {
-            function5_reverse();
+            function5_reverse(fileName);//TODO outPut by sentencies!!!
         }
         else {
             try {

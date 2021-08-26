@@ -20,28 +20,28 @@ public class SentenceParser {
 
     public List<String> parseSentences(String path, String generalParser, List<String> sentenceList,
                                        List<String> textList) {
-            setText(textList);
+        setText(textList);
 
-            Pattern generalPattern = Pattern.compile(generalParser);
+        Pattern generalPattern = Pattern.compile(generalParser);
 
-            Matcher generalMatcher = generalPattern.matcher(new TextReader().readFile(path, StandardCharsets.UTF_8));
+        Matcher generalMatcher = generalPattern.matcher(new TextReader().readFile(path, StandardCharsets.UTF_8));
 
 
-            while (generalMatcher.find()) {
-                //writer.append(generalMatcher.group(1));
-                // writer.append("\n");
-                new Text(generalMatcher.group(1), sentenceList).createText(generalMatcher.group(1), sentenceList);
-                new Text(generalMatcher.group(0), textList).createText(generalMatcher.group(0), textList);
+        while (generalMatcher.find()) {
+            //writer.append(generalMatcher.group(1));
+            // writer.append("\n");
+            new Text().createText(generalMatcher.group(1), sentenceList);
+            new Text().createText(generalMatcher.group(0), textList);
             //   System.out.println("Found sentence : " + generalMatcher.group(1));
-                // System.out.println("End of sentence!");  //TODO
+            // System.out.println("End of sentence!");  //TODO
         }
 
-      return sentenceList;
+        return sentenceList;
     }
 
 
-   public void reversText(List<String> textList) {
-       System.out.println("\n" + "Roll back this text: " + "\n");
+    public void reversText(List<String> textList) {
+        System.out.println("\n" + "Roll back this text: " + "\n");
 
         for (String line : textList) {
             System.out.print(line);
